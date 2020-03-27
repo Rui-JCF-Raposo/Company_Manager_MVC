@@ -1,0 +1,1005 @@
+
+/*-----------------------------------------------------------------*/
+/*-------------------------HEADER----------------------------------*/
+/*-----------------------------------------------------------------*/
+.search-engine div{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+    font-size: 1.8rem;
+}
+
+.search-engine input{
+    width: 100%;
+    padding: 10px;
+    outline-color: rgb(77, 149, 198);
+    outline-width: 3px;
+    font-weight: 200;
+}
+
+.search-engine i{
+    position: relative;
+    bottom: 10px;
+    right: 7px;
+    font-size: 2.5rem;
+}
+
+.search-engine button{
+    background-image: url('../assets/imgs/search-icon.png');
+    background-size:  80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(57, 57, 57);;
+    width: 50px;
+    height: 45px;
+    padding: 20px;
+}
+
+.option-buttons{
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+}
+
+
+.option-buttons div:first-child{
+    flex: 0 48%;
+}
+
+.option-buttons div:nth-child(2){
+    flex: 0 49%;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.option-buttons .change-cards-view{
+    flex: 0 7%;
+    margin-top: 10px;
+    border-left: 3px solid transparent;
+}
+
+.create-client,
+.create-employee{
+    position: relative;
+}
+
+.filter-client,
+.filter-employee{
+    position: relative;
+}
+
+.create-client button,
+.create-employee button,
+.filter-employee .filter-button,
+.filter-client .filter-button{
+    width: 100%;
+    margin-top: 15px;
+    background-color: rgb(77, 149, 198);
+    color: #FFF;
+    border: none;
+    padding: 10px;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    border-radius: 3px;
+    box-shadow: 1px 3px 5px rgb(201, 201, 201);
+    transition: background-color .1s ease;
+    outline: none;
+}
+
+#e-role{
+    max-width: 130px;
+}
+
+.filter-employee .filter-button,
+.filter-client .filter-button{
+    background-color: #FFF;
+    color: red;
+}
+
+.filter-employee button:hover,
+.filter-client button:hover{
+    background-color: orange;
+    color: #FFF;
+}
+
+.create-client button:hover,
+.create-employee button:hover{
+    background-color: green;
+}
+
+.create-active{
+    background-color: rgb(199, 1, 1)!important;
+}
+
+.create-client img,
+.create-employee img,
+.filter-employee img,
+.filter-client img,
+.filter-service-btn img{
+    width: 15px;
+    height: 15px;
+}
+
+/*-----------------------------------------------------------------*/
+/*-------------------------CLIENTS---------------------------------*/
+/*-----------------------------------------------------------------*/
+#clients,
+#employees{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    width: 100%;
+    padding: 35px 35px 0 35px;
+}
+
+.client-box,
+.employee-box{
+    box-shadow: 1px 3px 10px rgba(9, 9, 9, 0.139);  
+    flex: 0 48%;
+    margin-bottom: 40px;
+    animation-name: boxAnime;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes boxAnime{
+    from{opacity: 0}
+    to{opacity:1}
+}
+
+.client-box div:first-child,
+.employee-box div:first-child{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 15px;
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+.client-box-view-6,
+.employee-box-view-6{
+    margin-right: 30px;
+}
+
+.client-box div:first-child,
+.client-box-view-6 div:first-child,
+.client-box-view-8 div:first-child{
+    background-color: rgb(206, 178, 158);
+}
+
+.employee-box div:first-child,
+.employee-box-view-6 div:first-child,
+.employee-box-view-8 div:first-child{
+    background-color: rgb(27, 51, 70);
+    color: rgb(228, 228, 228);
+}
+
+.client-avatar,
+.client-avatar-view-6,
+.client-avatar-view-8,
+.employee-avatar,
+.employee-avatar-view-6,
+.employee-avatar-view-8{
+    display: flex;
+    flex: 0 50%;
+    flex-direction: column;
+    text-align: center;
+    max-height: 180px;
+    min-height: 180px;
+}
+
+.client-avatar h2,
+.client-avatar-view-6 h2,
+.client-avatar-view-8 h2,
+.employee-avatar h2,
+.employee-avatar-view-6 h2,
+.employee-avatar-view-8 h2{
+    font-weight: 400;
+}
+
+.client-avatar img,
+.employee-avatar img{
+    width: 100px;
+    height: 100px;
+    border-radius: 3px;
+}
+
+.client-info,
+.employee-info{
+    flex: 0 50%;
+    margin-top: 10px;
+    padding-left: 40px;
+    border-left: 1px solid rgba(216, 216, 216, 0.783);
+}
+
+.client-info p,
+.employee-info p{
+    margin-bottom: 10px;  
+    font-size: 1.6rem; 
+}
+
+.client-info span,
+.client-info-view-6 span,
+.client-info-view-8 span,
+.employee-info span,
+.employee-info-view-6 span,
+.employee-info-view-8 span{
+    font-weight: 400;
+    font-size: 1.7rem; 
+}
+
+.client-box button,
+.employee-box button{
+    width: 100%;
+    padding: 15px;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    transition: background-color .1s ease,
+                color .1s ease;
+    color: #333;
+    outline: none;
+}
+
+.contact-client a{
+    color: #333;
+}
+
+
+.client-box button,
+.client-box-view-6 button,
+.client-box-view-8 button{
+    border: 1px solid rgb(165, 165, 165);
+    outline: none;
+}
+
+.employee-box button,
+.employee-box-view-6 button,
+.employee-box-view-8 button{
+    border: 1px solid rgb(29, 29, 29);
+    outline: none;
+}
+
+
+.client-box button:hover,
+.client-box-view-6 button:hover,
+.client-box-view-8 button:hover,
+.employee-box button:hover,
+.employee-box-view-6 button:hover,
+.employee-box-view-8 button:hover{
+    background-color: rgb(34, 34, 34);
+    color: #FFF;
+}
+
+.page-nav{
+    position: relative;
+    bottom: -7%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%;
+    font-size: 1.7rem;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+main .container{
+    position: relative;
+}
+
+.page-nav i,
+.page-nav svg{
+    color: rgb(27, 51, 70);
+    font-size: 4rem;
+}
+
+.page-nav svg:hover,
+.page-nav i:hover{
+    color: steelblue;
+    cursor: pointer;
+}
+
+.change-cards-view{
+    display: flex;
+    align-items: center;
+}
+
+.change-cards-view label{
+    display: block;
+    width: 100%;
+}
+
+.cards-size{
+    height: 38px;
+    margin-top: 4px;
+    background-color: rgb(30, 47, 62);
+    color: #FFF;
+    font-size: 1.8rem;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.change-cards-view svg,
+.change-cards-view i {
+    text-align: center;
+    font-size: 3.4rem;
+    margin-right: 10%;
+    margin-top: 9%;
+}
+
+.buttons-diabled,
+.buttons-diabled:hover{
+    background-color: rgb(174, 2, 2)!important;
+}
+
+/*---------------------------------------------------*/
+/*-------Alternative CSS box view 6------------------*/
+/*---------------------------------------------------*/
+.client-box-view-6 div:first-child,
+.employee-box-view-6 div:first-child{
+    flex-direction: column;
+}
+
+
+.client-box-view-6,
+.employee-box-view-6{
+    box-shadow: 1px 3px 10px rgba(9, 9, 9, 0.139);  
+    flex: 0 30%;
+    margin-bottom: 40px;
+    animation-name: boxAnime;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.client-box-view-6 div:first-child,
+.employee-box-view-6 div:first-child{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+    padding: 30px 20px 10px 20px;
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+   
+
+.client-box-view-6 button,
+.employee-box-view-6 button{
+    width: 100%;
+    padding: 15px;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    transition: background-color .1s ease,
+                color .1s ease;
+}
+
+.client-avatar-view-6 img,
+.employee-avatar-view-6 img{
+    width: 80%;
+    height: 80%;
+    border-radius: 3px;
+    margin-bottom: 50px;
+}
+
+.client-avatar-view-6 h2,
+.employee-avatar-view-6 h2{
+    margin-bottom: 0;
+}
+
+.client-info-view-6,
+.employee-avatar-view-6{
+    min-height: 120px;
+    max-width: 210px;
+}
+
+.client-info-view-6 p,
+.employee-info-view-6 p{
+    margin: 0 auto;
+    text-align: left;
+    margin-bottom: 7px;
+}
+
+/*---------------------------------------------------*/
+/*-------Alternative CSS box view 8------------------*/
+/*---------------------------------------------------*/
+.d-flex-start{
+    justify-content: flex-start !important;
+}
+
+.client-box-view-8 div:first-child,
+.employee-box-view-8 div:first-child{
+    flex-direction: column;
+    flex-flow: wrap;
+}
+
+.client-box-view-8,
+.employee-box-view-8{
+    box-shadow: 1px 3px 10px rgba(9, 9, 9, 0.139);  
+    flex: 0 23%;
+    margin-bottom: 40px;
+    animation-name: boxAnime;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    margin-bottom: 30px;
+    margin-right: 20px;
+}
+
+.client-box-view-8 div:first-child,
+.employee-box-view-8 div:first-child{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+    padding: 10px 20px;
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+   
+
+.client-box-view-8 button,
+.employee-box-view-8 button{
+    width: 100%;
+    padding: 15px;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    transition: background-color .1s ease,
+                color .1s ease;
+}
+
+.client-avatar-view-8 img,
+.employee-avatar-view-8 img{
+    width: 70%;
+    height: 70%;
+    min-width: 100px;
+    border-radius: 3px;
+    margin-bottom: 50px;
+}
+
+.client-avatar-view-8 h2,
+.employee-avatar-view-8 h2{
+    margin-bottom: 5px;
+}
+
+.employee-info-view-8{
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.client-info-view-8,
+.employee-avatar-view-8{
+    min-height: 105px;
+    max-width: 210px;
+}
+
+.client-info-view-8 p,
+.employee-info-view-8 p{
+    text-align: left;
+    margin: 0 auto;
+    margin-bottom: 7px;
+}
+
+.client-picture-view-6,
+.employee-picture-view-6{
+    max-height: 140px;
+    max-width: 140px;
+    margin-bottom: 45px;
+}
+
+/*-----------------------------------------------------------------*/
+/*---------------------ADD CLIENT/EMPLOYEE MODAL-------------------*/
+/*-----------------------------------------------------------------*/
+#add-client,
+#add-employee{
+    position: absolute;
+    width: 100%;
+    height: 550px;
+    overflow-y: scroll;
+    left: 0 !important;
+    margin-top: 5px;
+    padding: 40px;
+    z-index: 1;
+    border-radius: 5px;
+    left: 35%;
+    right: 35%;
+    background-color: rgb(42, 76, 104);
+    color: #fff;
+    font-size: 1.6rem;
+    box-shadow: 1px 5px 10px rgba(51, 51, 51, 0.838);
+    text-transform: uppercase;
+}
+
+#add-client form,
+#add-employee form{
+    padding-left: 10px;
+    padding-bottom: 30px;
+}
+
+#add-client button{
+    box-shadow: none;
+}
+
+.form-col-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-col-2 .form-group{
+    flex: 0 50%!important;
+}
+
+.form-email{
+    margin-left: -10px;
+    margin-bottom: 20px;
+}
+
+#add-client .company-logo,
+#add-employee .company-logo{
+    margin-bottom: 20px;
+    transition: background-color .1s ease;
+    transition: box-shadow .1s ease;
+}
+
+#add-client .company-logo img,
+#add-employee .company-logo img{
+    width: 50px;
+    height: 50px;
+}
+
+#add-client .company-logo:hover h1,
+#add-employee .company-logo:hover h1{ 
+    color: #333;
+}
+
+#add-client .company-logo h1,
+#add-employee .company-logo h1{
+    display: flex;
+    align-items: center;
+    color: #333;
+    font-size: 2.5rem;
+}
+
+#add-client .company-logo span,
+#add-employee .company-logo span{
+    margin-left: 15px;
+}
+
+#add-client label,
+#add-employee label{
+    margin-bottom: 8px;
+}
+
+#add-client input,
+#add-employee input{
+    width: 100%;
+    height: 25px;
+    padding: 0px;
+    font-size: 1.6rem;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+#add-employee button{
+    box-shadow: none;
+}
+
+.form-date{
+    margin-bottom: 30px;
+    width: 97%;
+}
+
+.employee-position-details{
+    width: 97%;
+    margin-bottom: 15px;
+}
+
+/*-------------------------FORM ERROR MESSAGES----------------------------*/
+#add-client .form-group{
+    max-height: 80px;
+}
+
+.empty-error-message{
+    font-size: 1.2rem;
+    color: rgb(199, 1, 1);
+    background-color: rgba(255, 255, 255, 0.886);
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/*-------------------------Client/Employee Modal Animations------------------------------*/
+.modal-open{
+    animation-name: clientEmployeeModalOpening;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.modal-close{
+    animation-name: clientEmployeeModalClosing;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.modal-content-open{
+    animation-name: clienEmployeeModalContentOpening;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+.modal-content-close{
+    animation-name: clientEmployeeModalContentClosing;
+    animation-duration: .4s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes clientEmployeeModalOpening{
+    from{height: 0; padding: 0; visibility: hidden;}
+    to{height: 550px; padding: 40px;visibility: visible;}
+}
+
+@keyframes clientEmployeeModalClosing{
+    from{height: 550px; padding: 40px;visibility: visible;}
+    to{height: 0; padding: 0; visibility: hidden;}
+}
+
+@keyframes clientEmployeeModalContentOpening{
+    from{opacity: 0}
+    to{opacity: 1}
+}
+
+@keyframes clientEmployeeModalContentClosing{
+    from{opacity: 1}
+    to{opacity: 0;}
+}
+/*-----------------------------------------------------------------*/
+/*---------------------------FILTER MODAL--------------------------*/
+/*-----------------------------------------------------------------*/
+#filter-client-form,
+#filter-employee-form{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    background-color: #FFF;
+    color: #333;
+    padding: 20px 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    overflow-y: scroll;
+    box-shadow: 1px 5px 10px rgba(51, 51, 51, 0.632);
+    text-transform: uppercase;
+}
+
+#filter-client-form label,
+#filter-employee-form label{
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+#filter-client-form form,
+#filter-employee-form form{
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+#filter-client-form .form-group,
+#filter-employee-form .form-group{
+    flex: 0 33.33%;
+}
+
+#filter-client-form input,
+#filter-employee-form input{
+    width: 100%;
+    outline: 0;
+    outline: none;
+}
+
+#filter-client-form .form-age,
+#filter-employee-form .form-age{
+    flex: 0 15%;
+}
+
+.filter-active{
+    background-color: orange !important;
+    color: #FFF !important;
+}
+/*----------------------Filter Modal Animations------------------------*/
+.filter-anime-open{
+    animation-name: filterOpen;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+
+.filter-anime-close{
+    animation-name: filterClose;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes filterOpen{
+    from{height: 0; opacity: 0; padding:0}
+    to{height: 85px; opacity: 1; padding:20px 10px}
+}
+
+@keyframes filterClose{
+    from{height: 85px; opacity: 1; padding:20px 10px}
+    to{height: 0; opacity: 0; padding:0}
+}
+
+/*----------------------------------------------------------------------*/
+/*----------View Employee/Client box's Media Queries--------------------*/
+/*----------------------------------------------------------------------*/
+/*view box size 4*/
+@media screen and (max-width: 995px){
+
+    .client-box,
+    .employee-box{
+        flex: 0 47%;
+        margin-bottom: 40px;
+    }
+    .client-box div,
+    .employee-box div{
+        flex-direction: column;
+    }
+
+    .client-info,
+    .employee-info{
+        border-left: none;
+        padding-left:0;
+    }
+
+    .page-nav{
+        width: 40%;
+    }
+
+    .option-buttons div:nth-child(2){
+        border-right: none;
+    }
+}
+
+@media screen and (max-width: 770px){
+
+    #clients,
+    #employees{
+        justify-content: center;
+    }
+
+    .client-box,
+    .employee-box{
+        flex: 0 100%;
+        margin-right: 20px;
+    }
+
+    .client-box div,
+    .employee-box div{
+        flex-direction: row;
+    }
+
+    .client-avatar,
+    .employee-avatar{
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .client-info,
+    .employee-info{
+        border-left: 1px solid #FFF;
+        padding-left: 40px;
+    }
+
+    .page-nav{
+        width: 50%;
+    }
+
+    .client-picture-view-6{
+        margin-bottom: 10px;
+    }
+}
+
+/*view box size 6*/
+@media screen and (max-width: 1220px){
+
+    .client-box-view-6,
+    .employee-box-view-6{
+        flex: 0 47%;
+        margin-right: 0; 
+        border: 20px solid transparent;
+        box-shadow: none;
+    }
+}
+
+@media screen and (max-width: 960px){
+
+    .client-box-view-6,
+    .employee-box-view-6{
+        flex: 0 100%;   
+        margin-right: 20px; 
+    }
+
+    .client-box-view-6 div,
+    .employee-box-view-6 div{
+        flex-direction: row!important;
+    }
+
+    .client-info-view-6{
+        margin-bottom: -50px;
+    }
+
+    .client-box-view-6 .client-avatar-view-6,
+    .employee-box-view-6 .employee-avatar-view-6{
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .client-info-view-6,
+    .employee-info-view-6{
+        border-left: 1px solid #FFF;
+        padding-left: 80px;
+    }
+
+    .client-info-view-6{
+        margin-top: -30px;
+    }
+}
+
+@media screen and (max-width: 770px){
+    .client-info-view-6,
+    .employee-info-view-6{
+
+        padding-left: 40px;
+    }
+}
+
+/*view box size 8*/
+@media screen and (max-width: 1200px){
+    .client-box-view-8,
+    .employee-box-view-8{
+        flex: 0 29%;
+    }
+}
+
+@media screen and (max-width: 1020px){
+    .client-box-view-8,
+    .employee-box-view-8{
+        flex: 0 45%;
+        height: auto;
+    }   
+
+    .client-info-view-8,
+    .employee-info-view-8{
+        font-size: 1.4rem;
+    }
+}
+
+
+@media screen and (max-width: 770px){
+    #clients{
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    .client-box-view-8,
+    .employee-box-view-8{
+        flex: 0 100%;
+        margin-right: 20px;
+    }   
+
+    .client-avatar-view-8,
+    .employee-avatar-view-8{
+        flex:0 50%;
+        padding-right: 0;
+        margin-right: 0;
+    }
+
+    .client-info-view-8,
+    .employee-info-view-8{
+        flex:0 50%;
+        box-sizing: border-box;
+        border-left: 1px solid #FFF;
+        padding-left: 20px;
+    }
+
+}
+
+
+/*----------------------------------------------------------------------*/
+/*----------Create/Filter Modal's Media Queries-------------------------*/
+/*----------------------------------------------------------------------*/
+@media screen and (max-width: 995px){
+    #add-client,
+    #add-employee{
+        width:120%;
+    }
+
+
+    #add-client .company-logo h1,
+    #add-employee .company-logo h1{
+        font-size: 1.7rem;
+    }
+
+    .form-col-2{
+        flex-direction: column;
+    }
+
+    .form-col-2 .form-group{
+        width: 100%;
+        border-left: none !important;
+    }
+}
+
+@media screen and (max-width: 770px){
+    #add-client,
+    #add-employee{
+        width:200%;
+    }
+
+    .form-col-2{
+        flex-direction: row;
+    }
+
+    .form-col-2 div:last-child{
+        width: 100%;
+        border-left: 10px solid transparent!important;
+    }
+
+    @keyframes filterOpen{
+        from{height: 0; opacity: 0;}
+        to{height: 200px; opacity: 1;}
+    }
+    
+    @keyframes filterClose{
+        from{height: 200px; opacity: 1;}
+        to{height: 0; opacity: 0;}
+    }
+
+    #filter-client-form form,
+    #filter-employee-form form{
+        flex-direction: column;
+    }
+
+
+    .form-age{
+        width: 85%;
+        margin-bottom: 5px;
+    }
+    
+    #filter-client-form .form-group:last-child,
+    #filter-employee-form .form-group:last-child{
+        width: 85%;
+    }
+
+    #filter-client-form button,
+    #filter-employee-form button{
+        width: 85%;
+        margin-left: 0px !important;
+    }
+}
+
+@media screen and (max-width: 540px){
+    #filter-client-form  .form-group:first-child,
+    #filter-employee-form .form-group:first-child{
+        width: 100%;
+    }
+
+    #add-client .form-col-2,
+    #add-employee .form-col-2{
+        width: 100%;
+        flex-direction: column !important;
+    }
+
+    #add-client .form-group,
+    #add-employee .form-group{
+        border: none !important;
+    }
+
+    .form-email{
+        border-right: none !important;
+    }
+}
+
+
+

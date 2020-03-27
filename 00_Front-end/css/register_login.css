@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap');
+
+
+body{
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    background: rgb(226,206,189);
+    background: linear-gradient(141deg, rgba(226,206,189,0.5984768907563025) 16%, rgba(189,217,226,0.8701855742296919) 51%, rgba(226,206,189,0.7525385154061625) 100%);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+h1{
+    text-align: center;
+}
+
+.enter-options{
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-btn,
+.login-btn{
+    flex: 0 49%;
+    color: #FFF;
+    text-transform: uppercase;
+}
+
+.register-btn:hover,
+.login-btn:hover{
+    color: #FFF;
+}
+
+.register-btn{
+    background-color: rgb(27, 51, 70);
+}
+
+.login-btn{
+    background-color: rgb(1, 138, 1);
+}
+
+.register-btn:hover{
+    background-color: rgb(15, 29, 40);
+}
+
+.login-btn:hover{
+    background-color: rgb(1, 126, 1);
+}
+
+
+#register{
+    width: 80%;
+    margin: 0 auto;
+    transition: opacity .2s ease;
+}
+
+#register .form-group,
+#register .r-form-col-2 div
+{
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+}
+
+.r-form-col-2{
+    display: flex;
+}
+
+.r-form-col-2 div{
+    flex: 0 50%;
+}
+
+
+#register button,
+#login button{
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    border-radius: 3px;
+    background-color: steelblue;
+    color: #FFF;
+    border: none;
+    text-transform: uppercase;
+    padding: 10px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+#login button{
+    width: 100%;
+}
+
+#register button:hover,
+#login button:hover{
+    background-color: green;
+    color: #FFF;
+}
+
+#login{
+    width: 40%;
+    margin: 0 auto;
+}
+
+.btn-active,
+.btn-active:hover{
+    background-color: rgb(193, 0, 0);
+    transition: all .2s ease;
+}
+
+.show-form-anime{
+    animation-name: formAnime;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes formAnime{
+from{opacity: 0}
+to{opacity:1}
+}
+
+.error-message{
+    background-color: rgb(211, 211, 211);
+    color: rgb(193, 0, 0);
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+}

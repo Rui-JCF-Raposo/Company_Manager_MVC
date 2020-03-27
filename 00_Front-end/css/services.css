@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap');
+*{
+    font-family: 'Roboto', sans-serif;
+}
+/*---------------------------------------------------------------------*/
+/*-------------------------ORDERS HEADER-------------------------------*/
+/*---------------------------------------------------------------------*/
+.services-header{
+    display: flex;
+    margin-top: 35px;
+}
+
+.services-header div{
+    position: relative;
+    flex: 0 50%;
+}
+
+.services-header #filter-service{
+    border-left: 10px solid transparent;
+}
+
+.services-header .add-service-btn,
+.services-header .filter-service-btn{
+    width: 100%;
+    padding: 10px;
+    font-size: 1.8rem;
+    border-radius: 3px;
+    border: none;
+    text-transform: uppercase;
+    box-shadow: 1px 3px 5px rgb(201, 201, 201);
+    transition: background-color .1s ease,
+    color .1s ease;
+    outline: none;
+}
+
+.add-service-btn{
+    background-color: rgb(27, 51, 70);
+    color: #FFF;
+}
+
+.add-service-btn:hover{
+    background-color: green;
+}
+
+
+.filter-service-btn{
+    color: red;;
+}
+
+.filter-service-btn:hover{
+    background-color: orange;
+    color: #FFF;
+}
+
+.create-service-container{
+    position: absolute!important;
+    padding: 0px;
+    height: 0;
+    width: 100%;
+    overflow-y: hidden;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: rgb(39, 72, 99);
+    box-shadow: 1px 5px 10px rgba(51, 51, 51, 0.838);
+}
+
+.create-service-container .form-col-2 div{
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+}
+
+.create-service-container label {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: #FFF;
+}
+
+.create-service-container select,
+.create-service-container input{
+    width: 100%;
+    height: 25px;
+    font-size: 1.4rem;
+    font-weight: 300;
+    outline: none;
+}
+
+.create-service-container .form-col-2:last-child{
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.create-service-container .form-col-2:last-child div:first-child{
+    flex: 0 40%;
+}
+
+.create-service-container .form-col-2:last-child div:last-child{
+    flex: 0 60%;
+}
+
+
+.form-price label{
+    width: 60%;
+}
+
+.form-price input{
+    width: 30%;
+    outline: none;
+}
+
+.add-service,
+.apply-service-btn{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    text-transform: uppercase;
+    color: #FFF;
+    font-size: 1.4rem;
+    transition: all .2s ease;
+}
+
+.add-service{
+    background-color: orange;
+    color: #FFF;
+}
+
+.add-service:hover{
+    background-color: green;
+}
+
+#filter-service .filter-service-container{
+    position: absolute;
+    box-shadow: 1px 5px 10px rgba(51, 51, 51, 0.838);
+}
+
+#filter-service div{
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: #FFF;
+    color: #333;
+}
+
+#filter-service-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#filter-service-form label{
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+#filter-service-form input,
+#filter-service-form select,
+.apply-service-btn{
+    font-size: 1.4rem;
+}
+
+.apply-service-btn{
+    margin-top: 10px;
+    background-color: red;
+    color: #FFF;
+    outline: none !important;
+}
+
+.apply-service-btn:hover{
+    background-color: orange;
+}
+
+/*---------------------------------------------------------------------*/
+/*-------------------------SERVICES TABLE------------------------------*/
+/*---------------------------------------------------------------------*/
+.services{
+    margin-top: 40px;
+}
+
+#services-table{
+    font-size: 1.6rem;
+    width: 100%;
+}
+
+#services-table tr, th, td{
+    border: 1px solid #333;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#services-table th{
+    padding: 20px;
+    background-color: rgb(39, 72, 99);
+    color: #FFF;
+    font-weight: 400;
+}
+
+#services-table td{
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.68);
+    font-weight: 300;
+}
+
+.remove-service{
+    cursor: pointer;
+    color: rgb(145, 1, 1);
+    font-size: 2rem;
+}
+
+.remove-service:hover{
+    color: rgb(225, 3, 3);
+}
+
+/*---------------------------------------------------------------*/
+/*------------------MODAL ANIMATIONS-----------------------------*/
+/*---------------------------------------------------------------*/
+.open-service-modal{
+    animation-name: serviceModalOpen;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.close-service-modal{
+    animation-name: serviceModalClose;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes serviceModalOpen{
+    from{height: 0; padding: 10px}
+    to{height: 260px; padding: 40px}
+}
+
+@keyframes serviceModalClose{
+    from{height: 260px; padding: 40px}
+    to{height: 0px; padding: 0px}
+}
+
+.open-service-content-opacity{
+    animation-name: serviceContentFullOpacity;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+.close-service-content-opacity{
+    animation-name: serviceContentNullOpacity;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes serviceContentFullOpacity{
+    from{opacity: 0}
+    to{opacity: 1}
+}
+
+@keyframes serviceContentNullOpacity{
+    from{opacity: 1}
+    to{opacity: 0}
+}
+
+.open-service-filter{
+    animation-name: openServiceFilter;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+
+.close-service-filter{
+    animation-name: closeServiceFilter;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+
+.open-service-filter-content{
+    animation-name: openServiceFilterContent;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.close-service-filter-content{
+    animation-name: closeServiceFilterContent;
+    animation-duration: .1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes openServiceFilter{
+    from{height: 0; padding: 0;}
+    to{height: 110px; padding: 10px}
+}
+
+@keyframes closeServiceFilter{
+    from{height: 110px; padding: 10px}
+    to{height: 0; padding: 0}
+}
+
+@keyframes openServiceFilterContent{
+    from{opacity: 0}
+    to{opacity: 1}
+}
+
+@keyframes closeServiceFilterContent{
+    from{opacity: 1}
+    to{opacity: 0}
+}
+
+/*---------------------------------------------------------------------*/
+/*-------------------------MEDIA QUERIES-------------------------------*/
+/*---------------------------------------------------------------------*/
+@media screen and (max-width: 1200px){
+    .filter-service-container{
+        width: 100%;
+    }
+
+    #filter-service-form{
+        flex-direction: column;
+    }
+
+    #filter-service-form .form-group{
+        width: 90%;
+        margin: 0;
+    }
+
+    #filter-service-form div:last-child{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1200px){
+
+    .open-service-filter-content{
+        animation-name: openServiceFilterContent;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+    }
+    
+    .close-service-filter-content{
+        animation-name: closeServiceFilterContent;
+        animation-duration: .1s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes openServiceFilter{
+        from{height: 0; padding: 0;}
+        to{height: 315px; padding: 10px}
+    }
+    
+    @keyframes closeServiceFilter{
+        from{height: 315px; padding: 10px}
+        to{height: 0; padding: 0}
+    }
+}
+
+@media screen and (max-width: 995px){
+    .create-service-container{
+        overflow-y: scroll;
+    }
+
+    @keyframes serviceModalOpen{
+        from{height: 0; padding: 10px}
+        to{height: 420px; padding: 40px}
+    }
+    
+    @keyframes serviceModalClose{
+        from{height: 420px; padding: 40px}
+        to{height: 0px; padding: 0px}
+    }
+}
+
+@media screen and (max-width: 770px){
+    .employee-col{
+        display: none;
+    }
+
+    .create-service-container{
+        width: 200%;
+        overflow-y: hidden;
+    }
+
+    @keyframes serviceModalOpen{
+        from{height: 0; padding: 10px}
+        to{height: 250px; padding: 40px}
+    }
+    
+    @keyframes serviceModalClose{
+        from{height: 250px; padding: 40px}
+        to{height: 0px; padding: 0px}
+    }
+}

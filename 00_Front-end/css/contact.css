@@ -1,0 +1,143 @@
+/*-----------------------------------------------------------------*/
+/*---------------------------CONTACT MODAL-------------------------*/
+/*-----------------------------------------------------------------*/
+body{
+    position: relative;
+    margin-top: 0;
+    padding: 40px;
+    min-height: 1000px!important;   
+}
+
+.contact-person{
+    position: relative;
+    width: 45%;
+    margin: 0 auto;
+    padding: 40px !important;
+    padding: 120px 60px;
+    background-color: #FFF;
+    color: #333;
+    border: 2px solid #333;
+    box-shadow: 3px 5px 10px rgba(51, 51, 51, 0.482);
+}
+
+.contact-info{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+.contact-info div{
+    position: relative;
+    flex: 0 20%;
+}
+
+.contact-info div img{
+    display: block;
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    border-radius: 3px;
+}
+
+.contact-name{
+    width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 10px
+}
+
+.close-message-modal{
+    position: absolute!important;
+    flex: 0 20%;
+    top: 40px;
+    right: 10%;
+}
+
+.close-message-modal i{
+    font-size: 2.5rem;
+    color: red;
+    cursor: pointer;
+}
+
+.close-message-modal i:hover{
+    color: rgb(206, 2, 2);
+}
+
+#contact-person-form form div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+#contact-person-form form label{
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+#contact-person-form form input{
+    height: 35px;
+    width: 100%;
+    font-size: 1.4rem;
+    font-weight: 300;
+    outline-width: 2px;
+    outline-color: orange;
+}
+
+#contact-person-form form textarea{
+    height: 150px;
+    font-size: 1.4rem;
+    font-weight: 300;
+    outline-width: 2px;
+    outline-color: orange;
+}
+
+#contact-person-form form button{
+    padding: 15px;
+    background-color: steelblue;
+    color: #FFF;
+    transition: all .2s ease;
+    font-size: 1.6rem;
+}
+
+#contact-person-form form button:hover {
+    background-color: green;
+}
+
+
+@media screen and (min-width: 1200px) {
+    .contact-person{
+        width: 30%;
+    }
+}
+
+@media screen and (max-height: 900px) {
+    body{
+        min-height: 900px!important;   
+    }
+}
+
+
+@media screen and (max-width: 990px){
+    .contact-person{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 790px){
+    .contact-person{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .contact-person{
+        width: 100%;
+    }
+}
