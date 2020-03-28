@@ -1,12 +1,13 @@
 <?php 
+
     class Create {
         
         private $db;
         private $companyId;
 
         public function __construct($companyId) {
-            $this->db = new PDO("mysql:host=localhost;dbname=Company_Manager;charset=utf8mb4", "root", "");
             $this->companyId = $companyId;
+            $this->db = new PDO("mysql:host=localhost;dbname=Company_Manager;charset=utf8mb4", "root". "");
         }
 
         public function genaratePicture($file) {
@@ -32,10 +33,12 @@
             } // end profile picture logic -------------------------------------------------
         }
 
-        public function createClient($postData, $postFile) {
+        public function createClient($clients, $postData, $postFile) { 
+        
             foreach($postData as $key => $value) {
-                $postData[$key] = strip_tags($value);
+                $postData[$key] = strip_tags(trim($value));
             }
+
             if(
                 !empty($postData["firstName"]) &&
                 !empty($postData["lastName"]) &&
@@ -46,6 +49,18 @@
                 checkdate($postData["birth_month"], $postData["birth_day"], $postData["birth_year"]) &&
                 filter_var($postData["email"], FILTER_VALIDATE_EMAIL) 
             ) {
+
+                //Check if client already exists
+                foreach($clients as $client) {
+                    if(
+                        strtolower($postData["firstName"]) === strtolower($client["firstName"]) &&
+                        strtolower($postData["lastName"]) === strtolower($client["lastName"]) &&
+                        strtolower($postData["email"]) === strtolower($client["email"])
+                    ) {
+                        return false;
+                    }
+                }   
+
                 $clientPicture = $this->genaratePicture($postFile);
                 $query = $this->db->prepare("
                 INSERT INTO clients
@@ -64,17 +79,18 @@
                     $clientPicture,
                     $this->companyId
                 ]);
-                echo "Client Successfuly created!";
-                echo "<a href='../pages/clients.php'>Go Back</a>";
+                return true;
             } else {
-                die("Invalid Client Data");
+                return false;
             }
         }
 
-        public function createEmployee($postData, $postFile) {
+        public function createEmployee($employees, $postData, $postFile) {
+         
             foreach($postData as $key => $value) {
                 $postData[$key] = strip_tags($value);
             }
+
             if(
                 !empty($postData["firstName"]) &&
                 !empty($postData["lastName"]) &&
@@ -88,6 +104,18 @@
                 !empty($postData["salary"]) &&
                 filter_var($postData["email"], FILTER_VALIDATE_EMAIL) 
             ) {
+
+                  //Check if employee already exists
+                foreach($employees as $employee) {
+                    if(
+                        strtolower($postData["firstName"]) === strtolower($employee["firstName"]) &&
+                        strtolower($postData["lastName"]) === strtolower($employee["lastName"]) &&
+                        strtolower($postData["email"]) === strtolower($employee["email"])
+                    ) {
+                        return false;
+                    }
+                }  
+
                 $employeePicture = $this->genaratePicture($postFile);
 
                 $query = $this->db->prepare("
@@ -110,21 +138,21 @@
                     $postData["role"],
                     $this->companyId
                 ]);
-                echo "Employee Successfuly created!";
-                echo "<a href='../pages/employees.php'>Go Back</a>";
+                return true;
             } else {
-                die("Invalid Employee Data");
+                return false;
             }
         }
 
         public function cretaeDepartment($departments, $postData) {
+            //Check if department already exist
             if(!empty($postData["department"])){
                 $departmentName = strip_tags($postData["department"]);
                 if($departments) {
                     foreach($departments as $department) {
                         if(strtolower($department["name"]) === strtolower($departmentName)) {
                             echo "department-repeat";
-                            return;
+                            return false;
                         }
                     }
                 }
@@ -137,35 +165,38 @@
                     $departmentName,
                     $this->companyId
                 ]);
-                echo "Department created";
+                return true;
             } else {
-                die("Invalid Department Data");
+                return false;
             }
         } 
 
         public function createCompanyService($companyServices, $postData) {
-            if(!empty($postData["service"])) {
+            if(!empty($postData["service"]) && !empty($postData["s-department-id"])) {
                 $serviceName = strip_tags($postData["service"]);
+                $departmentId = strip_tags($postData["s-department-id"]);
+                //Check if service already exist
                 if($companyServices) {
                     foreach($companyServices as $service) {
                         if(strtolower($service["name"]) === strtolower($serviceName)) {
                             echo "service-repeat";
-                            return;
+                            return false;
                         }
                     }
                 }
                 $query = $this->db->prepare("
                     INSERT INTO company_services
-                    (name, company_id)
-                    VALUES(?, ?)
+                    (name, department_id, company_id)
+                    VALUES(?, ?, ?)
                 ");
                 $query->execute([
                     $serviceName,
+                    $departmentId,
                     $this->companyId
                 ]);
-                echo "Service created";
+                return true;
             } else {
-                die("Invalid Service Data");
+                return false;
             }
         }
 
@@ -173,11 +204,12 @@
             if(!empty($postData["role"]) && !empty($postData["department_id"]) && is_numeric($postData["department_id"])) {
                 $roleName = strip_tags($postData["role"]);
                 $departmentId = (int)strip_tags($postData["department_id"]);
+                //Check if role already exist
                 if($roles) {
                     foreach($roles as $role) {
                         if(strtolower($role["name"]) === strtolower($roleName)) { 
                             echo "role-repeat";  
-                            return;
+                            return false;
                         }
                     }
                 }
@@ -191,13 +223,48 @@
                     $departmentId,
                     $this->companyId
                 ]);
-                echo "Role created";
+                return true;
             } else {
-                echo "Invalid Role Data";
+                return false;
             }
         }
 
         public function createService($postData) {
+
+            foreach($postData as $key => $value) {
+                $postData[$key] = strip_tags(trim($value));
+            }
+            if(
+                (is_numeric($postData["client-id"]) && $postData["client-id"] > 0) &&
+                (is_numeric($postData["employee-id"]) && $postData["employee-id"] > 0) &&
+                (is_numeric($postData["service-id"]) && $postData["service-id"] > 0) &&
+                (is_numeric($postData["department-id"]) && $postData["department-id"] > 0) &&
+                (is_numeric($postData["service-price"]) && $postData["service-price"] > 0) 
+            ) {
+
+                /*-----------------------Add Service To DB-------------------------------*/
+                $query = $this->db->prepare("
+                INSERT INTO services_history
+                (client_id, employee_id, company_service_id, department_id, price, add_date, company_id)
+                VALUES(?, ?, ?, ?, ?, NOW(), ?)
+                ");
+
+                $query->execute([
+                    $postData["client-id"],
+                    $postData["employee-id"],
+                    $postData["service-id"],
+                    $postData["department-id"],
+                    $postData["service-price"],
+                    $this->companyId
+                ]);
+                    
+                echo "All validations worked"; 
+                return true;
+        
+
+            } else {
+                return false;
+            }
             
         }
 

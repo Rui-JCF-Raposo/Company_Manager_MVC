@@ -78,13 +78,31 @@
                                 <div id="add-services-form" class="p-5 rounded">
                                     <div>
                                         <form method="post" action="?controller=company&action=createCompanyService">
-                                            <div class="d-flex align-items-center">
-                                                <div class="form-group d-flex align-items-center w-100 mb-0">
-                                                    <label for="service-name" class="mr-4">Name: </label>
+                                            <div class="d-block">
+                                                <div class="form-group d-flex flex-column align-items-center">
+                                                    <label for="service-name" class="w-100 text-left mb-3">Name: </label>
                                                     <input id="service-name" type="text" name="service" class="form-control p-4 font-weight-light">
                                                 </div>
-                                                <div class="ml-5">
-                                                    <button type="submit" name="send">Add</button>
+                                                <div class="form-group d-flex flex-column">
+                                                    <label for="s-department" class="mb-3">Department</label>
+                                                    <select name="s-department-id" id="s-department" class="form-control">
+                                                        <?php 
+                                                            if(!empty($departments)) {
+                                                                foreach($departments as $department) {
+                                                                    echo "<option value='".$department["department_id"]."'>".$department["name"]."</option>";
+                                                                }
+                                                            } else {
+                                                                echo "<option value='0'>N/A (Add at least one)</option>";
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <div class="mt-5">
+                                                    <?php if(!empty($departments)) { ?>
+                                                        <button type="submit" name="send">Add</button>
+                                                    <?php } else { ?>
+                                                        <button type="submit" name="send" disabled class="btn-disabled">Add</button>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                             <p class="m-empty-message empty-m-service d-none">Name Required...</p>
@@ -124,15 +142,15 @@
                                             <label for="role-name" class="mr-4 ml-3 mb-3 mt-4 text-left w-100">Department: </label>
                                             <select name="department_id" class="form-control">
                                                 <?php 
-                                                        if(!empty($departments)) {
-                                                            foreach($departments as $department) {
-                                                                echo "<option value='".$department["department_id"]."'>".$department["name"]."</option>";
-                                                            }
-                                                        } else {
-                                                            echo "<option value='0'>N/A (Add at least one)</option>";
+                                                    if(!empty($departments)) {
+                                                        foreach($departments as $department) {
+                                                            echo "<option value='".$department["department_id"]."'>".$department["name"]."</option>";
                                                         }
-                                                        ?>
-                                                </select>
+                                                    } else {
+                                                        echo "<option value='0'>N/A (Add at least one)</option>";
+                                                    }
+                                                ?>
+                                            </select>
                                             </div>
                                             <div class="mt-5">
                                                 <?php if(!empty($departments)) { ?>

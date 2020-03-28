@@ -106,7 +106,7 @@
 }
 
 .form-price input{
-    width: 30%;
+    width: 100%;
     outline: none;
 }
 
@@ -230,11 +230,11 @@
 
 @keyframes serviceModalOpen{
     from{height: 0; padding: 10px}
-    to{height: 260px; padding: 40px}
+    to{height: 285px; padding: 40px}
 }
 
 @keyframes serviceModalClose{
-    from{height: 260px; padding: 40px}
+    from{height: 285px; padding: 40px}
     to{height: 0px; padding: 0px}
 }
 

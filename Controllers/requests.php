@@ -7,7 +7,6 @@
     
         //------------- Requests Coming From JavaScript--------
         //-----------------------------------------------------
-    
         if(isset($_GET["type"])) {
             if($_GET["type"] === "clients") {
                 $clients = $peopleModel->getClients();

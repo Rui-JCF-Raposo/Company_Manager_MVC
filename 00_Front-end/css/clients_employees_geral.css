@@ -66,6 +66,7 @@
 
 .filter-client,
 .filter-employee{
+    flex: 0 39% !important;
     position: relative;
 }
 

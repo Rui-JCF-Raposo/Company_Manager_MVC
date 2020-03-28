@@ -13,6 +13,8 @@
         $allowedPages = ["clients", "employees", "contact"];
         $allowedActions = ["contact", "createEmployee", "createClient"];
 
+        /*-----------------------Control Pages------------------------------*/
+        /*------------------------------------------------------------------*/
         if(isset($_GET["page"]) && in_array($_GET["page"], $allowedPages)) {
             if($_GET["page"] === "clients") {
                 $clients = $peopleModel->getClients();
@@ -25,6 +27,9 @@
             }
         }
 
+
+        /*-----------------------Control Actions----------------------------*/
+        /*------------------------------------------------------------------*/
         if(isset($_GET["action"]) && in_array($_GET["action"], $allowedActions)) {
             
             //------------Contact Action -----------------------------
@@ -36,14 +41,21 @@
                 } 
                 require("Views/pages/contact-person.php");
             }
-            //---------------------------------------------------------
 
             //---------------Create Action-----------------------------
             if(isset($_GET["action"])) {
                 if($_GET["action"] === "createClient") {
-                    $createModel->createClient($_POST, $_FILES);
+                    if(isset($_POST["send"])) {
+                        $clients = $peopleModel->getClients();
+                        $createModel->createClient($clients, $_POST, $_FILES);
+                        header("Location: ./?controller=people&page=clients");
+                    }
                 } else if($_GET["action"] === "createEmployee") {
-                    $createModel->createEmployee($_POST, $_FILES);
+                    if(isset($_POST["send"])) {
+                        $employees = $peopleModel->getEmployees();
+                        $createModel->createEmployee($employees, $_POST, $_FILES);
+                        header("Location: ./?controller=people&page=employees");
+                    }
                 }   
             }
         }

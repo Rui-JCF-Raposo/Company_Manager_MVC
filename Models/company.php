@@ -1,11 +1,13 @@
 <?php 
+
     class Company {
+        
         private $db;
         private $companyId;
 
         public function __construct($companyId) {
-            $this->db = new PDO("mysql:host=localhost;dbname=Company_Manager;charset=utf8mb4", "root". ""); 
             $this->companyId = $companyId;
+            $this->db = new PDO("mysql:host=localhost;dbname=Company_Manager;charset=utf8mb4", "root". "");
         }
 
         public function getCompanyInfo() {
@@ -30,7 +32,7 @@
             return $departments;
         }
 
-        public function getServices() {
+        public function getCompanyServices() {
             $companyServicesQuery = $this->db->prepare("
                 SELECT company_service_id, name
                 FROM company_services
@@ -54,9 +56,23 @@
 
         public function getServicesHistory() {
             $servicesHistoryQuery = $this->db->prepare("
-                SELECT service_id, name
-                FROM services_history
-                WHERE company_id = ?
+                SELECT 
+                    cs.name, 
+                    sh.price,
+                    CONCAT(c.first_name, ' ', c.last_name) AS clientName, 
+                    CONCAT(e.first_name, ' ', e.last_name) AS employeeName, 
+                    sh.add_date AS addDate
+                FROM 
+                    services_history AS sh
+                INNER JOIN
+                    company_services AS cs USING(company_service_id)
+                INNER JOIN 
+                    clients AS c USING(client_id)
+                INNER JOIN 
+                    employees AS e USING(employee_id)
+                WHERE 
+                    sh.company_id = ?
+                ORDER BY addDate DESC
             ");
             $servicesHistoryQuery ->execute([$_SESSION["company_id"]]);
             $servicesHistory = $servicesHistoryQuery ->fetchAll(PDO::FETCH_ASSOC);

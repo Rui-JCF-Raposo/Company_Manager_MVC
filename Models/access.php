@@ -1,10 +1,11 @@
 <?php
+
     class Access {
 
         private $db;
 
         public function __construct() {
-            $this->db = new PDO("mysql:host=localhost;dbname=Company_Manager;charset=utf8mb4", "root". ""); 
+            $this->db = new PDO("mysql:host=localhost;dbname=Company_Manager;charset=utf8mb4", "root". "");
         }
 
         public function login($data){

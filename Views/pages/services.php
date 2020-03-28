@@ -34,7 +34,7 @@
                         <div class="form-col-2">
                             <div>
                                 <label for="client">Client</label>
-                                <select name="client">
+                                <select name="client-id">
                                     <?php 
                                         if(!empty($clients)) {
                                             foreach($clients as $client) {
@@ -52,7 +52,7 @@
                             </div>
                             <div>
                                 <label for="employee">Sales Employee</label>
-                                <select name="employee">
+                                <select name="employee-id">
                                     <?php 
                                         if(!empty($employees)) {
                                             foreach($employees as $employee) {
@@ -72,7 +72,7 @@
                         <div class="form-col-2">
                             <div>
                                 <label for="service">Service</label>
-                                <select name="service">
+                                <select name="service-id">
                                     <?php 
                                         if(!empty($companyServices)) {
                                             foreach($companyServices as $companyService) {
@@ -89,23 +89,35 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="service-date">Service Start Date</label>
-                                <input type="date" name="service-date">
+                                <label for="department">Department</label>
+                                <select name="department-id" id="s-department">
+                                    <?php 
+                                        if(!empty($departments)) {
+                                            foreach($departments as $department) {
+                                                echo "<option value='".$department["department_id"]."'>".$department["name"]."</option>";
+                                            }
+                                        } else {
+                                            echo "<option value='0'>N/A (Add at least one)</option>";
+                                        }
+                                    ?>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-col-2">
+                        <div class="form-col-2 justify-content-start align-items-center">
                             <div class="form-price">
                                 <label for="service-price">Service Price</label>
                                 <input type="number" name="service-price" min="1">
                             </div>
-                            <div>
-                                <?php if(empty($companyServices) || empty($clients) || empty($employees)) { ?>
-                                    <button class="add-service buttons-diabled" disabled="true">Add</button>
-                                <?php } else { ?>
-                                    <button class="add-service">Add</button>
-                                <?php } ?>
+                            <div class="mt-5">
+                                <div>
+                                    <?php if(empty($companyServices) || empty($clients) || empty($employees)) { ?>
+                                        <button class="add-service buttons-diabled" disabled="true">Add</button>
+                                    <?php } else { ?>
+                                        <button type="submit" name="send" class="add-service">Add</button>
+                                    <?php } ?>
+                                </div>
                             </div>
-                        </div>
+                        </div> 
                     </form>
                 </div>
             </div>
@@ -146,56 +158,30 @@
 
         <main>
             <div class="services">
-                <table id="services-table">
-                    <tr>
-                        <th>Client</th>
-                        <th class="employee-col">Sales Employee</th>
-                        <th>Service</th>
-                        <th>Service Start Date</th>   
-                        <th>Service Price</th>
-                        <th>Remove Service</th>
-                    </tr>
-                    <tr>
-                        <td>Maria Benevides</td>
-                        <td class="employee-col">Tiago Mendonça</td>
-                        <td>Repair Desktop</td>
-                        <td>2020-3-2</td>
-                        <td>150€</td>
-                        <td>
-                            <i class="fas fa-trash-alt remove-service"></i>    
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Rui Raposo</td>
-                        <td class="employee-col">José Martins</td>
-                        <td>Repair Computer</td>
-                        <td>2020-02-10</td>
-                        <td>400€</td>
-                        <td>
-                            <i class="fas fa-trash-alt remove-service"></i>    
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>José Afonso</td>
-                        <td class="employee-col">José Martins</td>
-                        <td>Repair Computer</td>
-                        <td>2020-02-10</td>
-                        <td>320€</td>
-                        <td>
-                            <i class="fas fa-trash-alt remove-service"></i>    
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Cristiano Almeida</td>
-                        <td class="employee-col">Tiago Mendonça</td>
-                        <td>Create Website</td>
-                        <td>2020-02-7</td>
-                        <td>3400€</td>
-                        <td>
-                            <i class="fas fa-trash-alt remove-service"></i>    
-                        </td>
-                    </tr>
-                </table>
+                <?php if(isset($servicesHistory)) { ?>
+                    <table id="services-table">
+                        <tr>
+                            <th>Client</th>
+                            <th class="employee-col">Sales Employee</th>
+                            <th>Service</th>
+                            <th>Add Date</th>   
+                            <th>Service Price</th>
+                            <th>Remove Service</th>
+                        </tr>
+                        <?php foreach($servicesHistory as $service) { ?>
+                            <tr>
+                                <td><?=$service["clientName"]?></td>
+                                <td class="employee-col"><?=$service["employeeName"]?></td>
+                                <td><?=$service["name"]?></td>
+                                <td><?=date("Y-m-d", strtotime($service["addDate"]))?></td>
+                                <td><?=$service["price"]?>€</td>
+                                <td>
+                                    <i class="fas fa-trash-alt remove-service"></i>    
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                <?php } ?>
             </div>
         </main>
 

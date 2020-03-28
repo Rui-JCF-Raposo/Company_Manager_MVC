@@ -1,12 +1,13 @@
 <?php 
+
     class People {
-        
+
         private $db;
         private $companyId;
 
         public function __construct($companyId) {
-            $this->db = new PDO("mysql:host=localhost;dbname=Company_Manager;charset=utf8mb4", "root". ""); 
             $this->companyId = $companyId;
+            $this->db = new PDO("mysql:host=localhost;dbname=Company_Manager;charset=utf8mb4", "root". "");
         }
 
         public function getClients() {
@@ -37,6 +38,7 @@
                     roles AS r USING(department_id)
                 WHERE
                     e.company_id = ?
+                GROUP BY department
             ");
             $employeesQuery->execute([$this->companyId]);
             $employees = $employeesQuery->fetchAll(PDO::FETCH_ASSOC);
