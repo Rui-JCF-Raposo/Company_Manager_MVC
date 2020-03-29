@@ -1,5 +1,4 @@
 <?php 
-
     class People {
 
         private $db;
@@ -29,16 +28,12 @@
             $employeesQuery = $this->db->prepare("
                 SELECT 
                     e.employee_id, e.first_name AS firstName, e.last_name AS lastName, e.picture, 
-                    e.email, e.salary, d.name AS department, r.name AS role
+                    e.email, e.salary, e.department_name AS department, e.role_name AS role
                 FROM 
                     employees AS e
-                INNER JOIN 
-                    departments AS d USING(department_id)
-                INNER JOIN 
-                    roles AS r USING(department_id)
                 WHERE
                     e.company_id = ?
-                GROUP BY department
+                GROUP BY e.employee_id
             ");
             $employeesQuery->execute([$this->companyId]);
             $employees = $employeesQuery->fetchAll(PDO::FETCH_ASSOC);

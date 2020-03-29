@@ -1,17 +1,29 @@
 <?php
     session_start();
+    
     if(isset($_SESSION["company_id"])) {
-        
+    
         require("Models/company.php");
         require("Models/people.php");
         require("Models/create.php");
+        require("Models/remove.php");
 
         $allowedPages = ["home", "services"];
-        $allowedActions = ["createDepartment", "createCompanyService", "createRole", "createService"];
+        $allowedActions = [
+            "createDepartment", 
+            "createCompanyService", 
+            "createRole",
+            "createService", 
+            "removeDepartment", 
+            "removeCompanyService", 
+            "removeRole", 
+            "removeServiceFromHistory"
+        ];
         
         $companyModel = new Company($_SESSION["company_id"]);
         $peopleModel = new People($_SESSION["company_id"]);
         $createModel = new Create($_SESSION["company_id"]);
+        $removeModel = new Remove($_SESSION["company_id"]);
 
 
         /*-----------------------Control Pages------------------------------*/
@@ -33,9 +45,11 @@
             }
         }
 
-        /*-----------------------Control Actions----------------------------*/
+        /*-----------------------Control Actions ----------------------------*/
         /*------------------------------------------------------------------*/
         if(isset($_GET["action"]) && in_array($_GET["action"], $allowedActions)) {
+
+            // ----------------------Create--------------------------------------
 
             if($_GET["action"] === "createDepartment") {   
                 if(isset($_POST["send"])) {
@@ -70,7 +84,7 @@
                 }
             }
         }
-
+        
     }
-    
+
     

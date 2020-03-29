@@ -14,6 +14,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" defer></script>
     <scritp src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" defer></script>
+    <script src="./00_Front-end/js/remove.js" defer></script>
     <script type="module" src="./00_Front-end/js/main.js" defer></script>
 </head>
 <body id="clients-page">

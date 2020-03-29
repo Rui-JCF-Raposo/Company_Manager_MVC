@@ -5,13 +5,15 @@
         require("Models/company.php");
         require("Models/people.php");
         require("Models/create.php");
+        require("Models/remove.php");
         
         $companyModel = new Company($_SESSION["company_id"]);
         $peopleModel = new People($_SESSION["company_id"]);
         $createModel = new Create($_SESSION["company_id"]);
+        $removeModel = new Remove($_SESSION["company_id"]);
 
         $allowedPages = ["clients", "employees", "contact"];
-        $allowedActions = ["contact", "createEmployee", "createClient"];
+        $allowedActions = ["contact", "createEmployee", "createClient", "removeClient", "removeEmployee"];
 
         /*-----------------------Control Pages------------------------------*/
         /*------------------------------------------------------------------*/
@@ -44,6 +46,9 @@
 
             //---------------Create Action-----------------------------
             if(isset($_GET["action"])) {
+                
+                //---------------Create Action-----------------------------
+
                 if($_GET["action"] === "createClient") {
                     if(isset($_POST["send"])) {
                         $clients = $peopleModel->getClients();
@@ -56,8 +61,9 @@
                         $createModel->createEmployee($employees, $_POST, $_FILES);
                         header("Location: ./?controller=people&page=employees");
                     }
-                }   
+                }
             }
+
         }
     }
 

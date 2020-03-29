@@ -1,5 +1,4 @@
 <?php 
-
     class Company {
         
         private $db;
@@ -45,7 +44,7 @@
 
         public function getRoles() {
             $rolesQuery = $this->db->prepare("
-                SELECT role_id, name, department_id
+                SELECT role_id, name, department_name
                 FROM roles
                 WHERE company_id = ?
             ");
@@ -57,21 +56,16 @@
         public function getServicesHistory() {
             $servicesHistoryQuery = $this->db->prepare("
                 SELECT 
-                    cs.name, 
-                    sh.price,
-                    CONCAT(c.first_name, ' ', c.last_name) AS clientName, 
-                    CONCAT(e.first_name, ' ', e.last_name) AS employeeName, 
-                    sh.add_date AS addDate
+                    service_id AS serviceId,
+                    company_service_name AS name, 
+                    price,
+                    client_name AS clientName, 
+                    employee_name AS employeeName, 
+                    add_date AS addDate
                 FROM 
-                    services_history AS sh
-                INNER JOIN
-                    company_services AS cs USING(company_service_id)
-                INNER JOIN 
-                    clients AS c USING(client_id)
-                INNER JOIN 
-                    employees AS e USING(employee_id)
+                    services_history
                 WHERE 
-                    sh.company_id = ?
+                    company_id = ?
                 ORDER BY addDate DESC
             ");
             $servicesHistoryQuery ->execute([$_SESSION["company_id"]]);

@@ -15,6 +15,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" defer></script>
     <scritp src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" defer></script>
+    <script src="./00_Front-end/js/remove.js" defer></script>
     <script type="module" src="./00_Front-end/js/main.js" defer></script>
 </head>
 <body id="services-page">
@@ -34,12 +35,12 @@
                         <div class="form-col-2">
                             <div>
                                 <label for="client">Client</label>
-                                <select name="client-id">
+                                <select name="client-name">
                                     <?php 
                                         if(!empty($clients)) {
                                             foreach($clients as $client) {
                                                 echo "
-                                                    <option value='".$client["client_id"]."'>".$client["firstName"]." ".$client["lastName"]."</option>
+                                                    <option value='".$client["firstName"]." ".$client["lastName"]."'>".$client["firstName"]." ".$client["lastName"]."</option>
                                                 ";
                                             }
                                         } else {
@@ -52,12 +53,12 @@
                             </div>
                             <div>
                                 <label for="employee">Sales Employee</label>
-                                <select name="employee-id">
+                                <select name="employee-name">
                                     <?php 
                                         if(!empty($employees)) {
                                             foreach($employees as $employee) {
                                                 echo "
-                                                    <option value='".$employee["employee_id"]."'>".$employee["firstName"]."".$employee["lastName"]."</option>
+                                                    <option value='".$employee["firstName"]." ".$employee["lastName"]."'>".$employee["firstName"]." ".$employee["lastName"]."</option>
                                                 ";
                                             }
                                         } else {
@@ -72,12 +73,12 @@
                         <div class="form-col-2">
                             <div>
                                 <label for="service">Service</label>
-                                <select name="service-id">
+                                <select name="service-name">
                                     <?php 
                                         if(!empty($companyServices)) {
                                             foreach($companyServices as $companyService) {
                                                 echo "
-                                                    <option value='".$companyService["company_service_id"]."'>".$companyService["name"]."</option>
+                                                    <option value='".$companyService["name"]."'>".$companyService["name"]."</option>
                                                 ";
                                             }
                                         } else {
@@ -90,11 +91,11 @@
                             </div>
                             <div>
                                 <label for="department">Department</label>
-                                <select name="department-id" id="s-department">
+                                <select name="department-name" id="s-department">
                                     <?php 
                                         if(!empty($departments)) {
                                             foreach($departments as $department) {
-                                                echo "<option value='".$department["department_id"]."'>".$department["name"]."</option>";
+                                                echo "<option value='".$department["name"]."'>".$department["name"]."</option>";
                                             }
                                         } else {
                                             echo "<option value='0'>N/A (Add at least one)</option>";
@@ -158,7 +159,7 @@
 
         <main>
             <div class="services">
-                <?php if(isset($servicesHistory)) { ?>
+                <?php if(!empty($servicesHistory)) { ?>
                     <table id="services-table">
                         <tr>
                             <th>Client</th>
@@ -176,7 +177,9 @@
                                 <td><?=date("Y-m-d", strtotime($service["addDate"]))?></td>
                                 <td><?=$service["price"]?>€</td>
                                 <td>
-                                    <i class="fas fa-trash-alt remove-service"></i>    
+                                    <a class="remove-service-a" data-serviceId="<?=$service["serviceId"]?>">
+                                        <i class="fas fa-trash-alt remove-service"></i>    
+                                    </a>
                                 </td>
                             </tr>
                         <?php } ?>
