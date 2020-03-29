@@ -13,6 +13,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" defer></script>
     <scritp src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" defer></script>
+    <script src="./00_Front-end/js/remove.js" defer></script>  
     <script type="module" src="./00_Front-end/js/main.js" defer></script>
 </head>
 <body id="home-page">
@@ -60,7 +61,9 @@
                                             <?php foreach($departments as $department) { ?>
                                                 <li class="position-relative">
                                                     <?=$department["name"]?>
-                                                    <i class="far fa-trash-alt position-absolute" data-departemnt_id="<?=$department["department_id"]?>"></i>
+                                                    <a class="remove-department" data-departmentId="<?=$department["department_id"]?>">
+                                                        <i class="far fa-trash-alt position-absolute"></i>
+                                                    </a>
                                                 </li>
                                             <?php } ?>
                                         </ul>
@@ -85,11 +88,11 @@
                                                 </div>
                                                 <div class="form-group d-flex flex-column">
                                                     <label for="s-department" class="mb-3">Department</label>
-                                                    <select name="s-department-id" id="s-department" class="form-control">
+                                                    <select name="s-department-name" id="s-department" class="form-control">
                                                         <?php 
                                                             if(!empty($departments)) {
                                                                 foreach($departments as $department) {
-                                                                    echo "<option value='".$department["department_id"]."'>".$department["name"]."</option>";
+                                                                    echo "<option value='".$department["name"]."'>".$department["name"]."</option>";
                                                                 }
                                                             } else {
                                                                 echo "<option value='0'>N/A (Add at least one)</option>";
@@ -116,7 +119,9 @@
                                             <?php foreach($companyServices as $companyService) { ?>
                                                 <li class="position-relative">
                                                     <?=$companyService["name"]?>
-                                                    <i class="far fa-trash-alt position-absolute" data-company_service_id="<?=$companyService["company_service_id"]?>"></i>
+                                                    <a class="remove-company-service" data-companyServiceId="<?=$companyService["company_service_id"]?>">
+                                                        <i class="far fa-trash-alt position-absolute"></i>
+                                                    </a>
                                                 </li>
                                             <?php } ?>
                                         </ul>
@@ -140,11 +145,11 @@
                                         </div>
                                         <div class="form-group d-flex align-items-center flex-column w-100 mb-0">
                                             <label for="role-name" class="mr-4 ml-3 mb-3 mt-4 text-left w-100">Department: </label>
-                                            <select name="department_id" class="form-control">
+                                            <select name="department_name" class="form-control">
                                                 <?php 
                                                     if(!empty($departments)) {
                                                         foreach($departments as $department) {
-                                                            echo "<option value='".$department["department_id"]."'>".$department["name"]."</option>";
+                                                            echo "<option value='".$department["name"]."'>".$department["name"]."</option>";
                                                         }
                                                     } else {
                                                         echo "<option value='0'>N/A (Add at least one)</option>";
@@ -170,7 +175,9 @@
                                             <?php foreach($roles as $role) { ?>
                                                 <li class="position-relative">
                                                     <?=$role["name"]?>
-                                                    <i class="far fa-trash-alt position-absolute" data-role_id="<?=$role["role_id"]?>"></i>
+                                                    <a class="remove-role" data-roleId="<?=$role["role_id"]?>">
+                                                        <i class="far fa-trash-alt position-absolute"></i>
+                                                    </a>
                                                 </li>
                                             <?php } ?>
                                         </ul>
@@ -182,10 +189,6 @@
                         </li>
                     </ul>
                 </div>
-                
-                <div id="add-services-form"></div>
-                
-                <div id="add-roles-form"></div>   
             </div>
 
         </div>

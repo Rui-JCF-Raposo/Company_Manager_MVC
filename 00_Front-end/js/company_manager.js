@@ -93,7 +93,7 @@ export class CompanyManager {
             if(data[i] !== undefined) {
                 output.innerHTML += `
                     <div class="${boxClasses.box}" data-id="${data[i].client_id}">
-                        <div>
+                        <div class="main-content">
                             <div class="${boxClasses.avatar}">
                                 <div class="title">
                                     <h2>${data[i].firstName} ${data[i].lastName}</h2>
@@ -106,6 +106,11 @@ export class CompanyManager {
                                 <p><span>Email:</span> ${data[i].email}</p>
                                 <p><span>Country:</span> ${data[i].country}</p>
                                 <p><span>City:</span> ${data[i].city}</p>
+                            </div>
+                            <div>
+                                <a class="remove-client-a" data-clientId="${data[i].client_id}">
+                                    <i class="fas fa-backspace remove-client"></i>
+                                </a>
                             </div>
                         </div>
                         <a href="?controller=people&action=contact&origin=clients&clientId=${data[i].client_id}">
@@ -158,7 +163,7 @@ export class CompanyManager {
             if(data[i] !== undefined) {
                 output.innerHTML += `
                     <div class="${boxClasses.box}" data-id=${data[i].employee_id}>
-                        <div>
+                        <div class="main-content">
                             <div class="${boxClasses.avatar}">
                                 <div class="title">
                                     <h2>${data[i].firstName} ${data[i].lastName}</h2>
@@ -172,6 +177,11 @@ export class CompanyManager {
                                 <p><span>Department:</span> ${data[i].department}</p>
                                 <p><span>Role:</span> ${data[i].role}</p>
                                 <p><span>Salary:</span> ${data[i].salary}</p>
+                            </div>
+                            <div>
+                                <a class="remove-employee-a" data-employeeId="${data[i].employee_id}">   
+                                    <i class="fas fa-backspace remove-employee"></i>
+                                </a>
                             </div>
                         </div>
                         <a href="?controller=people&action=contact&origin=employees&employeeId=${data[i].employee_id}">
@@ -201,24 +211,26 @@ export class CompanyManager {
     movePageSystem(type) {
         const previousPage = document.querySelector(".previous-page");
         const nextPage = document.querySelector(".next-page");
-        previousPage.addEventListener("click", () => {
-            if(type === "Clients" && this.clientCurrentPage > 1) {
-                this.clientCurrentPage--;
-                this.showPageSystem("Clients");
-            } else if(type === "Employees" && this.employeeCurrentPage > 1) {
-                this.employeeCurrentPage--;
-                this.showPageSystem("Employees");
-            }
-        });
-        nextPage.addEventListener("click", () => {
-            if(type === "Clients" && this.clientCurrentPage < this.clientNumberOfPages) {
-                this.clientCurrentPage++;
-                this.showPageSystem("Clients");
-            } else if(type === "Employees" && this.employeeCurrentPage < this.employeesNumberOfPages) {
-                this.employeeCurrentPage++;
-                this.showPageSystem("Employees");
-            }
-        })
+        if(priviousPage && nextPage) {
+            previousPage.addEventListener("click", () => {
+                if(type === "Clients" && this.clientCurrentPage > 1) {
+                    this.clientCurrentPage--;
+                    this.showPageSystem("Clients");
+                } else if(type === "Employees" && this.employeeCurrentPage > 1) {
+                    this.employeeCurrentPage--;
+                    this.showPageSystem("Employees");
+                }
+            });
+            nextPage.addEventListener("click", () => {
+                if(type === "Clients" && this.clientCurrentPage < this.clientNumberOfPages) {
+                    this.clientCurrentPage++;
+                    this.showPageSystem("Clients");
+                } else if(type === "Employees" && this.employeeCurrentPage < this.employeesNumberOfPages) {
+                    this.employeeCurrentPage++;
+                    this.showPageSystem("Employees");
+                }
+            })
+        }
     }
 
     changeViewQuantity(quantity, type) {

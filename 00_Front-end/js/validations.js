@@ -89,7 +89,6 @@ export function FormsValidator(e, type) {
             fields.country.value === "" ||
             fields.city.value === "" ||
             fields.street.value === "" ||
-            fields.birthDate.value === "" ||
             emailRegex.test(fields.email.value) === false
         ) {
             e.preventDefault();

@@ -105,22 +105,22 @@
                 filter_var($postData["email"], FILTER_VALIDATE_EMAIL) 
             ) {
 
-                  //Check if employee already exists
+                //Check if employee already exists
                 foreach($employees as $employee) {
                     if(
                         strtolower($postData["firstName"]) === strtolower($employee["firstName"]) &&
                         strtolower($postData["lastName"]) === strtolower($employee["lastName"]) &&
                         strtolower($postData["email"]) === strtolower($employee["email"])
-                    ) {
-                        return false;
-                    }
-                }  
-
+                        ) {
+                            return false;
+                        }
+                    }  
+                
                 $employeePicture = $this->genaratePicture($postFile);
 
                 $query = $this->db->prepare("
                     INSERT INTO employees
-                    (first_name, last_name, birth_date, email, phone, department_id, salary, country, city, street, picture, role_id, company_id)
+                    (first_name, last_name, birth_date, email, phone, department_name, salary, country, city, street, picture, role_name, company_id)
                     VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)
                 ");
                 $query->execute([
@@ -172,9 +172,9 @@
         } 
 
         public function createCompanyService($companyServices, $postData) {
-            if(!empty($postData["service"]) && !empty($postData["s-department-id"])) {
+            if(!empty($postData["service"]) && !empty($postData["s-department-name"])) {
                 $serviceName = strip_tags($postData["service"]);
-                $departmentId = strip_tags($postData["s-department-id"]);
+                $departmentName = strip_tags($postData["s-department-name"]);
                 //Check if service already exist
                 if($companyServices) {
                     foreach($companyServices as $service) {
@@ -184,14 +184,15 @@
                         }
                     }
                 }
+
                 $query = $this->db->prepare("
                     INSERT INTO company_services
-                    (name, department_id, company_id)
+                    (name, department_name, company_id)
                     VALUES(?, ?, ?)
                 ");
                 $query->execute([
                     $serviceName,
-                    $departmentId,
+                    $departmentName,
                     $this->companyId
                 ]);
                 return true;
@@ -201,9 +202,9 @@
         }
 
         public function createRole($roles, $postData) {
-            if(!empty($postData["role"]) && !empty($postData["department_id"]) && is_numeric($postData["department_id"])) {
+            if(!empty($postData["role"]) && !empty($postData["department_name"])) {
                 $roleName = strip_tags($postData["role"]);
-                $departmentId = (int)strip_tags($postData["department_id"]);
+                $departmentName = strip_tags($postData["department_name"]);
                 //Check if role already exist
                 if($roles) {
                     foreach($roles as $role) {
@@ -215,12 +216,12 @@
                 }
                 $query = $this->db->prepare("
                     INSERT INTO roles
-                    (name, department_id, company_id)
+                    (name, department_name, company_id)
                     VALUES(?, ?, ?)
                 ");
                 $query->execute([
                     $roleName,
-                    $departmentId,
+                    $departmentName,
                     $this->companyId
                 ]);
                 return true;
@@ -235,25 +236,25 @@
                 $postData[$key] = strip_tags(trim($value));
             }
             if(
-                (is_numeric($postData["client-id"]) && $postData["client-id"] > 0) &&
-                (is_numeric($postData["employee-id"]) && $postData["employee-id"] > 0) &&
-                (is_numeric($postData["service-id"]) && $postData["service-id"] > 0) &&
-                (is_numeric($postData["department-id"]) && $postData["department-id"] > 0) &&
+                !empty($postData["client-name"]) &&
+                !empty($postData["employee-name"])  &&
+                !empty($postData["service-name"]) &&
+                !empty($postData["department-name"]) &&
                 (is_numeric($postData["service-price"]) && $postData["service-price"] > 0) 
             ) {
 
                 /*-----------------------Add Service To DB-------------------------------*/
                 $query = $this->db->prepare("
                 INSERT INTO services_history
-                (client_id, employee_id, company_service_id, department_id, price, add_date, company_id)
+                (company_service_name, client_name, employee_name, department_name, price, add_date, company_id)
                 VALUES(?, ?, ?, ?, ?, NOW(), ?)
                 ");
 
                 $query->execute([
-                    $postData["client-id"],
-                    $postData["employee-id"],
-                    $postData["service-id"],
-                    $postData["department-id"],
+                    $postData["service-name"],
+                    $postData["client-name"],
+                    $postData["employee-name"],
+                    $postData["department-name"],
                     $postData["service-price"],
                     $this->companyId
                 ]);
