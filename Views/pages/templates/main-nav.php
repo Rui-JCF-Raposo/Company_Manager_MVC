@@ -15,10 +15,10 @@
         </div>
         <div class="nav-menu">
             <ul>
-                <li><a class="home" href="?controller=company&page=home">Home</a></li>
-                <li><a class="clients" href="?controller=people&page=clients">Clients</a></li>
-                <li><a class="employees" href="?controller=people&page=employees">Employees</a></li>
-                <li><a class="services" href="?controller=company&page=services">Services</a></li>
+                <li><a class="home" href="?controller=home&page=home">Home</a></li>
+                <li><a class="clients" href="?controller=clients&page=clients">Clients</a></li>
+                <li><a class="employees" href="?controller=employees&page=employees">Employees</a></li>
+                <li><a class="services" href="?controller=services&page=services">Services</a></li>
                 <li>
                     <a class="settings" href="#">
                         <i class="fas fa-cogs"></i>

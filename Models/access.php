@@ -29,10 +29,9 @@
                         if(
                             password_verify($data["password"], $company["password"])
                         ) {
-                            session_start();
                             $_SESSION["login"] = "true";
                             $_SESSION["company_id"] = $company["company_id"];
-                            header("Location: ?controller=company&page=home");
+                            header("Location: ?controller=home&page=home");
                         } else {
                             header("Location: ?controller=access&loginInvalid");
                         }
@@ -42,7 +41,6 @@
         }
 
         public function logout() {
-            session_start();
             session_destroy();
             header("Location: ?controller=acess");
         }

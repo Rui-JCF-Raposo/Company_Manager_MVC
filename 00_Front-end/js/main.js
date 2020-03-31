@@ -13,6 +13,7 @@ const currentPage = document.querySelector('body');
 if(currentPage.id === 'clients-page') {
     company.showPageSystem('Clients').then(() => {
         company.movePageSystem('Clients');
+        
     });
 
 } else if(currentPage.id === 'employees-page') {
@@ -38,6 +39,7 @@ const loginForm = document.querySelector("#login form");
 const departmentForm = document.querySelector("#add-departments-form form");
 const companyServicesForm = document.querySelector("#add-services-form form");
 const rolesForm = document.querySelector("#add-roles-form form");
+const addServicesHistory = document.querySelector(".create-service-container form");
 
 if(addClientForm){
     addClientForm.addEventListener("submit", (e) => {
@@ -111,12 +113,18 @@ if(rolesForm) {
     });
 }
 
+if(addServicesHistory) {
+    addServicesHistory.addEventListener("submit", (e) => {
+        FormsValidator(e, "price");
+    });
+}
+
 allFormsBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-        if(!btn.classList.contains("btn-active")) {
+        if(btn.classList.contains("btn-active") || btn.classList.contains("create-active")) {
             const allForms = document.querySelectorAll("form")
             CleanFormMessages(allForms);
-        } 
+        }  
     });
    
 });

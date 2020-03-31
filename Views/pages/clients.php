@@ -47,21 +47,21 @@
                                     <span>Client Info</span>
                                 </h1>
                             </header>
-                            <form method="POST" action="?controller=people&action=createClient" enctype="multipart/form-data">
+                            <form method="POST" action="?controller=clients&action=createClient" enctype="multipart/form-data">
                                 <div class="form-col-2">
                                     <div class="form-group">
-                                        <label for="c-first-name">First name:</label>
+                                        <label for="c-first-name">First name <sup>*</sup></label>
                                         <input type="text" class="form-control" name="firstName" id="c-first-name"/>
                                         <p class="empty-error-message empty-fname d-none">Required field...</p>
                                     </div>
                                     <div class="form-group">
-                                        <label for="c-last-name">Last name:</label>
+                                        <label for="c-last-name">Last name <sup>*</sup></label>
                                         <input type="text" class="form-control" name="lastName" id="c-last-name"/>
                                         <p class="empty-error-message empty-lname d-none">Required field...</p>
                                     </div>
                                 </div>
                                 <div class="form-email">
-                                    <label for="c-email">Email:</label>
+                                    <label for="c-email">Email <sup>*</sup></label>
                                     <input type="email" class="form-control" name="email" id="c-email"/>
                                     <p class="empty-error-message error-email d-none">Invalid email...</p>
                                 </div>
@@ -71,25 +71,25 @@
                                         <input type="text" class="form-control" name="phone" id="c-phone"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="c-country">Country:</label>
+                                        <label for="c-country">Country <sup>*</sup></label>
                                         <input type="text" class="form-control" name="country" id="c-country"/>
                                         <p class="empty-error-message empty-country d-none">Required field...</p>
                                     </div>
                                 </div>
                                 <div class="form-col-2">
                                     <div class="form-group">
-                                        <label for="c-city">City:</label>
+                                        <label for="c-city">City <sup>*</sup></label>
                                         <input type="text" class="form-control" name="city" id="c-city"/>
                                         <p class="empty-error-message empty-city d-none">Required field...</p>
                                     </div>
                                     <div class="form-group">
-                                        <label for="c-street">Street:</label>
+                                        <label for="c-street">Street <sup>*</sup></label>
                                         <input type="text" class="form-control" name="street" id="c-street"/>
                                         <p class="empty-error-message empty-street d-none">Required field...</p>
                                     </div>
                                 </div>
                                 <div class="form-group form-date">
-                                        <label for="c-birthDate">Birth Date:</label>
+                                        <label for="c-birthDate">Birth Date <sup>*</sup></label>
                                         <select name="birth_day" class="b-day" aria-label="Day">
                                             <?php for($i = 1; $i <= 31; $i++) { ?>
                                                 <option value="<?=$i?>"><?= $i < 10 ? "0".$i:$i ?></option>

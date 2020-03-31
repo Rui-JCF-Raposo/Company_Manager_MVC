@@ -32,7 +32,7 @@ export class CompanyManager {
 
     getClients = function() {
         return new Promise(function(resolve, reject) {
-            fetch("./Controllers/requests.php?type=clients")
+            fetch("./Http/requests.php?type=clients")
                 .then(response => response.json())
                 .then(data => {
                     resolve(data)
@@ -42,7 +42,7 @@ export class CompanyManager {
 
     getEmployees = function(){
         return new Promise(function(resolve, reject) {
-            fetch("./Controllers/requests.php?type=employees")
+            fetch("./Http/requests.php?type=employees")
                 .then(response => response.json())
                 .then(data => {
                     resolve(data)
@@ -113,13 +113,15 @@ export class CompanyManager {
                                 </a>
                             </div>
                         </div>
-                        <a href="?controller=people&action=contact&origin=clients&clientId=${data[i].client_id}">
+                        <a href="?controller=clients&action=contact&origin=clients&clientId=${data[i].client_id}">
                             <button class="contact-client">Contact</button>
                         </a>
                     </div> 
                 `;
             }
         }
+
+        this.removeClientsEvent();
     }
 
     employeesHtmlOuput(data, currentPage, pageLimit) {
@@ -145,7 +147,6 @@ export class CompanyManager {
             }
             this.pageLimit = 6;
             pageLimit = this.pageLimit;
-            output.classList.remove("d-flex-start");
         } else if(this.viewQuantity === 8) {
             boxClasses = {
                 box: "employee-box-view-8",
@@ -173,7 +174,7 @@ export class CompanyManager {
                                 </div>
                             </div>
                             <div class="${boxClasses.info}">
-                                <p><span>Phone:</span> ${data[i].email}</p>
+                                <p><span>Phone:</span> ${data[i].phone}</p>
                                 <p><span>Department:</span> ${data[i].department}</p>
                                 <p><span>Role:</span> ${data[i].role}</p>
                                 <p><span>Salary:</span> ${data[i].salary}</p>
@@ -184,13 +185,15 @@ export class CompanyManager {
                                 </a>
                             </div>
                         </div>
-                        <a href="?controller=people&action=contact&origin=employees&employeeId=${data[i].employee_id}">
+                        <a href="?controller=employees&action=contact&origin=employees&employeeId=${data[i].employee_id}">
                             <button class="contact-employee">Contact</button>
                         </a>
                     </div> 
                 `
             }
         }
+
+        this.removeEmployeesEvent();
     }
 
     calculateNumberOfPages(data, type) {
@@ -211,26 +214,24 @@ export class CompanyManager {
     movePageSystem(type) {
         const previousPage = document.querySelector(".previous-page");
         const nextPage = document.querySelector(".next-page");
-        if(priviousPage && nextPage) {
-            previousPage.addEventListener("click", () => {
-                if(type === "Clients" && this.clientCurrentPage > 1) {
-                    this.clientCurrentPage--;
-                    this.showPageSystem("Clients");
-                } else if(type === "Employees" && this.employeeCurrentPage > 1) {
-                    this.employeeCurrentPage--;
-                    this.showPageSystem("Employees");
-                }
-            });
-            nextPage.addEventListener("click", () => {
-                if(type === "Clients" && this.clientCurrentPage < this.clientNumberOfPages) {
-                    this.clientCurrentPage++;
-                    this.showPageSystem("Clients");
-                } else if(type === "Employees" && this.employeeCurrentPage < this.employeesNumberOfPages) {
-                    this.employeeCurrentPage++;
-                    this.showPageSystem("Employees");
-                }
-            })
-        }
+        previousPage.addEventListener("click", () => {
+            if(type === "Clients" && this.clientCurrentPage > 1) {
+                this.clientCurrentPage--;
+                this.showPageSystem("Clients");
+            } else if(type === "Employees" && this.employeeCurrentPage > 1) {
+                this.employeeCurrentPage--;
+                this.showPageSystem("Employees");
+            }
+        });
+        nextPage.addEventListener("click", () => {
+            if(type === "Clients" && this.clientCurrentPage < this.clientNumberOfPages) {
+                this.clientCurrentPage++;
+                this.showPageSystem("Clients");
+            } else if(type === "Employees" && this.employeeCurrentPage < this.employeesNumberOfPages) {
+                this.employeeCurrentPage++;
+                this.showPageSystem("Employees");
+            }
+        });
     }
 
     changeViewQuantity(quantity, type) {
@@ -269,6 +270,28 @@ export class CompanyManager {
             } else if(currentPage.id === "settings-page") {
                 settings.classList.add("active-page");
             }
+        }
+
+        removeClientsEvent() {
+            const removeClientBtns = document.querySelectorAll(".remove-client-a");
+            removeClientBtns.forEach((client) => {
+                client.addEventListener("click", function() {
+                    console.log("works");
+                    fetch("./Http/requests.php?remove=client&clientId=" + this.dataset.clientid);
+                    this.parentNode.parentNode.parentNode.remove();
+                });
+            });
+        }
+
+        removeEmployeesEvent() {
+            const removeEmployeeBtns = document.querySelectorAll(".remove-employee-a");
+            removeEmployeeBtns.forEach((employee) => {
+                employee.addEventListener("click", function() {
+                    //console.log(this.parentNode.parentNode.parentNode); return;
+                    fetch("./Http/requests.php?remove=employee&employeeId=" + this.dataset.employeeid);
+                    this.parentNode.parentNode.parentNode.remove();
+                });
+            });
         }
 }
 

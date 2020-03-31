@@ -47,21 +47,21 @@
                                     <span>Add your employee</span>
                                 </h1>
                             </header>
-                            <form method="POST" action="?controller=people&action=createEmployee" enctype="multipart/form-data">
+                            <form method="POST" action="?controller=employees&action=createEmployee" enctype="multipart/form-data">
                                 <div class="form-col-2">
                                     <div class="form-group">
-                                        <label for="e-first-name">First name:</label>
+                                        <label for="e-first-name">First name <sup>*</sup></label>
                                         <input type="text" class="form-control" name="firstName" id="e-first-name"/>
                                         <p class="empty-error-message empty-fname d-none">Required field...</p>
                                     </div>
                                     <div class="form-group">
-                                        <label for="e-last-name">Last name:</label>
+                                        <label for="e-last-name">Last name <sup>*</sup></label>
                                         <input type="text" class="form-control" name="lastName" id="e-last-name"/>
                                         <p class="empty-error-message empty-lname d-none">Required field...</p>
                                     </div>
                                 </div>
                                 <div class="form-email">
-                                    <label for="e-email">Email:</label>
+                                    <label for="e-email">Email <sup>*</sup></label>
                                     <input type="text" class="form-control" name="email" id="e-email"/>
                                     <p class="empty-error-message error-email d-none">Invalid Email...</p>
                                 </div>
@@ -71,25 +71,25 @@
                                         <input type="text" class="form-control" name="phone" id="e-phone"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="e-country">Country:</label>
+                                        <label for="e-country">Country <sup>*</sup></label>
                                         <input type="text" class="form-control" name="country" id="e-country"/>
                                         <p class="empty-error-message empty-country d-none">Required field...</p>
                                     </div>
                                 </div>
                                 <div class="form-col-2">
                                     <div class="form-group">
-                                        <label for="e-city">City:</label>
+                                        <label for="e-city">City <sup>*</sup></label>
                                         <input type="text" class="form-control" name="city" id="e-city" />
                                         <p class="empty-error-message empty-city d-none">Required field...</p>
                                     </div>
                                     <div class="form-group">
-                                        <label for="e-street">Street:</label>
+                                        <label for="e-street">Street <sup>*</sup></label>
                                         <input type="text" class="form-control" name="street" id="e-street"/>
                                         <p class="empty-error-message empty-street d-none">Required field...</p>
                                     </div>
                                 </div>
                                 <div class="form-group form-date">
-                                    <label for="e-birth-date">Birth Date:</label>
+                                    <label for="e-birth-date">Birth Date</label>
                                     <select name="birth_day" class="b-day" aria-label="Day">
                                         <?php for($i = 1; $i <= 31; $i++) { ?>
                                             <option value="<?=$i?>"><?= $i < 10 ? "0".$i:$i ?></option>
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="form-col-2 employee-position-details">
                                     <div class="form-group">
-                                        <label for="e-department">Department:</label>
+                                        <label for="e-department">Department</label>
                                         <select name="department" id="e-department">
                                             <?php 
                                                 if(!empty($departments)) {
@@ -128,7 +128,7 @@
                                         <p class="empty-error-message empty-department d-none">Required field...</p>
                                     </div>
                                     <div class="form-group">
-                                        <label for="e-role">Role:</label>
+                                        <label for="e-role">Role </label>
                                         <select name="role" id="e-role">
                                             <?php 
                                                 if(!empty($roles)) {
@@ -147,7 +147,7 @@
                                         <p class="empty-error-message empty-role d-none">Required field...</p>
                                     </div>
                                     <div class="form-group">
-                                        <label for="e-salary">Salary:</label>
+                                        <label for="e-salary">Salary <sup>*</sup></label>
                                         <input type="text" class="form-control" name="salary" id="e-salary"/>
                                         <p class="empty-error-message empty-salary d-none">Required field...</p>
                                     </div>
@@ -209,7 +209,7 @@
     <main>
         <div class="container">
             
-            <div id="employees"></div> <!-- end emplyees -->
+            <div id="employees" class="employee-6"></div> <!-- end emplyees -->
 
 
             <?php if(!empty($employees)) { ?>

@@ -31,7 +31,7 @@
                     <i class="fas fa-briefcase"></i>
                 </button>
                 <div class="create-service-container d-none">
-                    <form method="post" action="?controller=company&action=createService">
+                    <form method="post" action="?controller=services&action=createService">
                         <div class="form-col-2">
                             <div>
                                 <label for="client">Client</label>
@@ -106,8 +106,9 @@
                         </div>
                         <div class="form-col-2 justify-content-start align-items-center">
                             <div class="form-price">
-                                <label for="service-price">Service Price</label>
-                                <input type="number" name="service-price" min="1">
+                                <label for="service-price">Service Price <sup>*</sup></label>
+                                <input id="service-price" type="number" name="service-price" min="1">
+                                <p class="empty-error-message invalid-price d-none mt-3 text-uppercase">Required Field...</p>
                             </div>
                             <div class="mt-5">
                                 <div>
@@ -141,12 +142,20 @@
                         <div class="form-group">
                             <label for="service">Service</label>
                             <select name="service" class="form-control">
-                                <option value="">Repair Computer</option>
-                                <option value="">Repair Mobile Phone</option>
-                                <option value="">Home Service</option>
-                                <option value="">Create Website</option>
-                                <option value="">Create Desktop App</option>
-                                <option value="">Create Mobile App</option>
+                                <?php 
+                                    if(!empty($companyServices)) {
+                                        foreach($companyServices as $companyService) {
+                                            echo "
+                                                <option value='".$companyService["name"]."'>".$companyService["name"]."</option>
+                                            ";
+                                        }
+                                    } else {
+                                        echo "
+                                            <option value='Null'>N/A</option>
+                                        ";
+                                    }
+                                ?>
+                                <?php ?>
                             </select>
                         </div>
                         <div>
@@ -165,8 +174,8 @@
                             <th>Client</th>
                             <th class="employee-col">Sales Employee</th>
                             <th>Service</th>
-                            <th>Add Date</th>   
-                            <th>Service Price</th>
+                            <th class="date-col">Add Date</th>   
+                            <th class="price-col">Service Price</th>
                             <th>Remove Service</th>
                         </tr>
                         <?php foreach($servicesHistory as $service) { ?>
@@ -174,8 +183,8 @@
                                 <td><?=$service["clientName"]?></td>
                                 <td class="employee-col"><?=$service["employeeName"]?></td>
                                 <td><?=$service["name"]?></td>
-                                <td><?=date("Y-m-d", strtotime($service["addDate"]))?></td>
-                                <td><?=$service["price"]?>€</td>
+                                <td class="date-col"><?=date("Y-m-d", strtotime($service["addDate"]))?></td>
+                                <td class="price-col"><?=$service["price"]?>€</td>
                                 <td>
                                     <a class="remove-service-a" data-serviceId="<?=$service["serviceId"]?>">
                                         <i class="fas fa-trash-alt remove-service"></i>    

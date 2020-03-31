@@ -40,7 +40,7 @@
                             <div class="departments-modal">
                                 <div id="add-departments-form" class="p-5 rounded">
                                     <div>
-                                        <form method="post" action="?controller=company&action=createDepartment">
+                                        <form method="post" action="?controller=home&action=createDepartment">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-group d-flex align-items-center w-100 mb-0">
                                                     <label for="department-name" class="mr-4">Name: </label>
@@ -80,7 +80,7 @@
                             <div class="services-modal">
                                 <div id="add-services-form" class="p-5 rounded">
                                     <div>
-                                        <form method="post" action="?controller=company&action=createCompanyService">
+                                        <form method="post" action="?controller=home&action=createCompanyService">
                                             <div class="d-block">
                                                 <div class="form-group d-flex flex-column align-items-center">
                                                     <label for="service-name" class="w-100 text-left mb-3">Name: </label>
@@ -138,7 +138,7 @@
                             <div class="roles-modal">
                                 <div id="add-roles-form" class="p-5 rounded">
                                     <div>
-                                        <form method="post" action="?controller=company&action=createRole" class="d-block align-items-center">
+                                        <form method="post" action="?controller=home&action=createRole" class="d-block align-items-center">
                                         <div class="form-group d-flex align-items-center flex-column w-100 mb-0">
                                             <label for="role-name" class="mb-3 text-left w-100">Name: </label>
                                             <input id="role-name" type="text" name="role" class="form-control p-4 font-weight-light">

@@ -141,7 +141,7 @@
     margin-bottom: 40px;
     animation-name: boxAnime;
     animation-duration: 1s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: forwards;  
 }
 
 @keyframes boxAnime{
@@ -610,7 +610,6 @@ main .container{
     padding: 5px;
     border-radius: 3px;
 }
-
 /*-------------------------Client/Employee Modal Animations------------------------------*/
 .modal-open{
     animation-name: clientEmployeeModalOpening;
@@ -787,13 +786,14 @@ main .container{
 
     #clients,
     #employees{
-        justify-content: center;
+        display: block;
     }
 
     .client-box,
     .employee-box{
         flex: 0 100%;
-        margin-right: 20px;
+        margin-right: 0;
+        border: none;
     }
 
     .client-box div,
@@ -836,6 +836,12 @@ main .container{
 
 @media screen and (max-width: 960px){
 
+    #clients,
+    #employees{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .client-box-view-6,
     .employee-box-view-6{
         flex: 0 100%;   
@@ -869,10 +875,21 @@ main .container{
 }
 
 @media screen and (max-width: 770px){
+
+    .client-box-view-6,
+    .employee-box-view-6{
+        margin-right: 0;
+        border: none;
+    }
+
     .client-info-view-6,
     .employee-info-view-6{
-
         padding-left: 40px;
+    }
+
+    .client-avatar-view-6 img,
+    .employee-avatar-view-6 img{
+        margin-bottom: 30px;
     }
 }
 
@@ -907,7 +924,8 @@ main .container{
     .client-box-view-8,
     .employee-box-view-8{
         flex: 0 100%;
-        margin-right: 20px;
+        margin-right: 0;
+        border: none;
     }   
 
     .client-avatar-view-8,

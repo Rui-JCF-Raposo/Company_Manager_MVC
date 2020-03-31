@@ -89,20 +89,24 @@
 
 .create-service-container .form-col-2:last-child{
     justify-content: space-between;
-    margin-top: 15px;
+    margin-top: -10px;
 }
 
 .create-service-container .form-col-2:last-child div:first-child{
-    flex: 0 40%;
+    flex: 0 50%;
 }
 
 .create-service-container .form-col-2:last-child div:last-child{
-    flex: 0 60%;
+    flex: 0 50%;
 }
 
 
 .form-price label{
     width: 60%;
+}
+
+.form-price{
+    height: 50px;
 }
 
 .form-price input{
@@ -171,6 +175,7 @@
 .apply-service-btn:hover{
     background-color: orange;
 }
+
 
 /*---------------------------------------------------------------------*/
 /*-------------------------SERVICES TABLE------------------------------*/
@@ -385,5 +390,18 @@
     @keyframes serviceModalClose{
         from{height: 250px; padding: 40px}
         to{height: 0px; padding: 0px}
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .date-col{
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 550px) {
+    .price-col{
+        display: none;
     }
 }

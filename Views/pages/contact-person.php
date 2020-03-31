@@ -21,7 +21,7 @@
                     </div>        
                 </div>
                 <div class="close-message-modal">
-                    <a href="?controller=people&page=<?php echo $_GET["origin"]?>"><i class="fas fa-times"></a></i>
+                    <a href="?controller=<?=$_GET["origin"] === "clients" ? "clients":"employees"?>&page=<?php echo $_GET["origin"]?>"><i class="fas fa-times"></a></i>
                 </div>
             </div>
             <div id="contact-person-form">

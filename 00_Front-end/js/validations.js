@@ -32,7 +32,8 @@ export function FormsValidator(e, type) {
         emptyAddRole: document.querySelector(".empty-m-role"),
         departmentRepeat:  document.querySelector(".m-department-repeat"),
         companyServiceRepeat: document.querySelector(".m-service-repeat"),
-        roleRepeat: document.querySelector(".m-role-repeat")
+        roleRepeat: document.querySelector(".m-role-repeat"),
+        invalidPrice: document.querySelector(".invalid-price")
     }
 
     if(type === "client") {
@@ -76,6 +77,8 @@ export function FormsValidator(e, type) {
         fields.companyServiceName =  document.getElementById("service-name");
     } else if(type === "role-repeat") {
         fields.roleName =  document.getElementById("role-name");
+    } else if(type === "price") {
+        fields.price = document.getElementById("service-price");
     } else if(type === "cleanForms") {
         cleanAllForms(fields);
     } 
@@ -236,6 +239,14 @@ export function FormsValidator(e, type) {
         errorMessages.roleRepeat.classList.remove("d-none");
         e.preventDefault();
     }
+
+    if(fields.price) {
+        if(fields.price.value === "" || !Number.isInteger(Number(fields.price.value))) {
+            console.log("works s");
+            errorMessages.invalidPrice.classList.remove("d-none");
+            e.preventDefault();
+        }
+    }
     
     cleanFieldsEvents(fields, errorMessages);
     
@@ -382,19 +393,21 @@ function cleanFieldsEvents(fields, errorMessages) {
 }
 
 export function CleanFormMessages(allForms) {
+    
     allForms.forEach((form) => {
         const formFields = document.querySelectorAll("form input");
         formFields.forEach((input) => {
             input.value = "";
         });
-        const homeFormMessages = document.querySelectorAll("#home-page p");
-        homeFormMessages.forEach((message) => {
-            message.classList.add("d-none");
-        });
-        const formMessages = form.querySelectorAll("form p");
-        formMessages.forEach((message) => {
-            message.classList.add("d-none");
-        });
+    });
+
+    const homeFormMessages = document.querySelectorAll("#home-page p");
+    homeFormMessages.forEach((message) => {
+        message.classList.add("d-none");
+    });
+    const formMessages = document.querySelectorAll("form p");
+    formMessages.forEach((message) => {
+        message.classList.add("d-none");
     });
 }
 

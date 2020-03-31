@@ -32,23 +32,23 @@
             <h1>Register your company</h1>
             <form method="post" action="?controller=access&action=register">
                 <div class="form-group">
-                    <label for="r-name">Name</label>
+                    <label for="r-name">Name <sup>*</sup></label>
                     <input type="text" name="name" id="r-name" class="form-control">
                     <p class="error-message empty-company-name d-none">Required Field...</p>
                 </div>
                 <div class="r-form-col-2">
                     <div class="form-group">
-                        <label for="r-email">Email</label>
+                        <label for="r-email">Email <sup>*</sup></label>
                         <input type="email" name="email" id="r-email" class="form-control">
                         <p class="error-message error-r-email d-none">Required Field...</p>
                     </div>
                     <div class="form-group">
-                        <label for="r-password">Password</label>
+                        <label for="r-password">Password <sup>*</sup></label>
                         <input type="password" name="password" id="r-password" class="form-control">
                         <p class="error-message empty-password d-none">Required Field...</p>
                     </div>
                     <div class="form-group">
-                        <label for="r-password">Repeat your Password</label>
+                        <label for="r-password">Repeat your Password <sup>*</sup></label>
                         <input type="password" name="rep-password" id="r-rep-password" class="form-control">
                         <p class="error-message empty-rep-password d-none">Required Field...</p>
                         <p class="error-message error-passwword d-none">Passwords don't match...</p>
@@ -60,7 +60,7 @@
                         <input type="text" name="phone" id="r-phone" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="r-industry">Industry</label>
+                        <label for="r-industry">Industry <sup>*</sup></label>
                         <input type="text" name="industry" id="r-industry" class="form-control">
                         <p class="error-message empty-industry d-none">Required Field...</p>
                     </div>
@@ -82,7 +82,7 @@
         </div>
         <div id="login" class="mt-4">
             <h1>Login</h1>
-            <form method="post" action="?controller=enter&action=login" class="mt-4">
+            <form method="post" action="?controller=access&action=login" class="mt-4">
                 <div class="form-group">
                     <label for="l-email">Email</label>
                     <input type="email" name="email" id="l-email" class="form-control">
