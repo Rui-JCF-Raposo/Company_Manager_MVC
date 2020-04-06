@@ -91,4 +91,69 @@ require("employees.php");
             }
             return false;
         }
+
+        public function getClientByName($name) {
+            $query = $this->db->prepare("
+                SELECT 
+                    client_id, first_name AS firstName, last_name as lastName, picture,
+                    email, country, city
+                FROM 
+                    clients
+                WHERE 
+                    first_name = ? AND company_id = ?
+            ");
+            $query->execute([$name, $this->companyId]);
+            $clients = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $clients;     
+        }
+
+        public function getClientByCountry($country) {
+            $country = strip_tags(trim($country));
+            $query = $this->db->prepare("
+                SELECT 
+                    client_id, first_name AS firstName, last_name as lastName, picture,
+                    email, country, city
+                FROM 
+                    clients
+                WHERE 
+                    country = ? AND company_id = ?
+            ");
+            $query->execute([$country, $this->companyId]);
+            $clients = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $clients;
+        }
+
+        public function getClientByCity($city) {
+            $city = strip_tags(trim($city));
+            $query = $this->db->prepare("
+                SELECT 
+                    client_id, first_name AS firstName, last_name as lastName, picture,
+                    email, country, city
+                FROM 
+                    clients
+                WHERE 
+                    city = ? AND company_id = ?
+            ");
+            $query->execute([$city, $this->companyId]);
+            $clients = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $clients;
+        }
+
+
+        public function getClientByCountryAndCity($country, $city) {
+            $country = strip_tags(trim($country));
+            $city = strip_tags(trim($city));
+            $query = $this->db->prepare("
+                SELECT 
+                    client_id, first_name AS firstName, last_name as lastName, picture,
+                    email, country, city
+                FROM 
+                    clients
+                WHERE 
+                    country = ? AND city = ? AND company_id = ?
+            "); 
+            $query->execute([$country, $city, $this->companyId]);
+            $clients = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $clients;
+        }
     }

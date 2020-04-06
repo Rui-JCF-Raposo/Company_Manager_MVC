@@ -22,10 +22,10 @@
     <header>
         <div class="container">
             <div>
-                <form class="search-engine" method="POST" action="#">
+                <form class="search-engine se-employee">
                     <div>
-                        <input type="text" name="search" placeholder="Search for employee...">
-                        <button type="submit">
+                        <input id="e-search" type="text" name="search" placeholder="Search for employee...">
+                        <button type="button" id="e-search-btn">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>

@@ -92,7 +92,7 @@ export class CompanyManager {
         for (let i = currentClient; i < clientsPerPage; i++) {
             if(data[i] !== undefined) {
                 output.innerHTML += `
-                    <div class="${boxClasses.box}" data-id="${data[i].client_id}">
+                    <div class="${boxClasses.box} c-box-container" data-id="${data[i].client_id}">
                         <div class="main-content">
                             <div class="${boxClasses.avatar}">
                                 <div class="title">

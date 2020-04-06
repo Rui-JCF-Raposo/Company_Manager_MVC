@@ -100,4 +100,19 @@
             return false;
         }
 
+        public function getEmployeeByName($name) {
+            $employeesQuery = $this->db->prepare("
+                SELECT 
+                    e.employee_id, e.first_name AS firstName, e.last_name AS lastName, e.picture, 
+                    e.email, e.phone, e.salary, e.department_name AS department, e.role_name AS role
+                FROM 
+                    employees AS e
+                WHERE
+                    e.first_name = ? AND e.company_id = ?
+            ");
+            $employeesQuery->execute([$name, $this->companyId]);
+            $employees = $employeesQuery->fetchAll(PDO::FETCH_ASSOC);
+            return $employees;  
+        }
+
     }

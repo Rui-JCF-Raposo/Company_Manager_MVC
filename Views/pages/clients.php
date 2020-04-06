@@ -22,10 +22,11 @@
     <header>
         <div class="container">
             <div>
-                <form class="search-engine" method="POST" action="#">
+                <form class="search-engine se-client">
                     <div>
-                        <input type="text" name="search" placeholder="Search for client...">
-                        <button type="submit">
+                        <input id="c-search" type="text" name="search" placeholder="Search for client...">
+                        <input type="hidden" name="type" value="clientName">
+                        <button type="button" id="c-search-btn">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -125,7 +126,7 @@
                         <img src="./Assets/imgs/filter-icon.png" alt="Filter icon">
                     </button>
                     <div id="filter-client-form" class="d-none">
-                        <form method="POST" action="#">
+                        <form>
                             <div class="form-group">
                                 <label for="c-f-country">Country</label>
                                 <input type="text" name="country" class="form-control" id="c-f-contry">
@@ -134,12 +135,8 @@
                                 <label for="c-f-city">City</label>
                                 <input type="text" name="city" class="form-control" id="c-f-city">
                             </div>
-                            <div class="form-group form-age">
-                                <label for="c-f-age">Age</label>
-                                <input type="number" name="age" class="form-control" min="0" max= "120" id="c-f-age">
-                            </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-danger btn-lg w-100 ml-2 mt-4 border-0 text-uppercase">Apply</button>
+                                <button type="button" id="c-filter-btn" class="btn btn-danger btn-lg w-100 ml-2 mt-4 border-0 text-uppercase">Apply</button>
                             </div>
                         </form>
                     </div>

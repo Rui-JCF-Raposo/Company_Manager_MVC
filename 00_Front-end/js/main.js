@@ -1,6 +1,6 @@
 import { CompanyManager } from './company_manager.js';
 import { Modal } from './modals.js';
-import { FormsValidator, CleanFormMessages } from "./validations.js"
+import { FormsValidator, CleanFormMessages } from "./validations.js";
 
 
 /*-------------------------------------------------------------------------------*/
@@ -222,6 +222,73 @@ if(filterClientBtn) {
         modal.addFilterToggle("Service");
     });
 }   
+
+/*------------------------------Search Event-------------------------------*/
+/*-------------------------------------------------------------------------*/
+
+window.addEventListener("keydown", (e) => {
+    if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+      }
+});
+
+/*-----------------------------CLIENTS-------------------------------------*/
+//Get client by search filter ------------------------------
+const searchClientBtnSubmit = document.getElementById("c-search-btn");
+if(searchClientBtnSubmit) {
+    searchClientBtnSubmit.addEventListener("click", (e) => {
+        const name = document.getElementById("c-search").value;
+        fetch("./Http/requests.php?type=search&clientName="+name, {method: "GET"})
+        .then(response => response.json())
+        .then(response => {
+            const clientsInfo = response;
+            company.clientsHtmlOutput(clientsInfo, company.clientCurrentPage, company.pageLimit);
+        })
+    });
+}
+
+//Get client by Country ---------------------------------------
+const filterClientBtnSubmit = document.getElementById("c-filter-btn");
+if(filterClientBtnSubmit) {
+    filterClientBtnSubmit.addEventListener("click", (e) => {
+        const country = document.getElementById("c-f-contry").value;
+        const city = document.getElementById("c-f-city").value;
+        console.log(country, city);
+        fetch("./Http/requests.php?type=search&clientFilters=true&country="+country+"&city="+city, {method: "GET"})
+            .then(response => response.json())
+            .then(response => {
+                const clientsInfo = response;
+                company.clientsHtmlOutput(clientsInfo, company.clientCurrentPage, company.pageLimit);
+            })
+    });
+}
+/*---------------------------------------------------------------------------*/
+
+
+/*-----------------------------EMPLOYEES-------------------------------------*/
+//Get employee by search filter ------------------------------
+const searchEmployeeBtnSubmit = document.getElementById("e-search-btn");
+if(searchEmployeeBtnSubmit) {    
+    searchEmployeeBtnSubmit.addEventListener("click", (e) => {
+        const name = document.getElementById("e-search").value;
+        fetch("./Http/requests.php?type=search&employeeName="+name, {method: "GET"})
+        .then(response => response.json())
+        .then(response => {
+            const employeesInfo = response;
+            company.employeesHtmlOuput(employeesInfo, company.clientCurrentPage, company.pageLimit);
+        })
+        e.preventDefault();
+    });
+}
+
+
+
+
+
+//Get employee by filter params --------------------------------
+//Get Service by filter params --------------------------------
+
 
 
 
